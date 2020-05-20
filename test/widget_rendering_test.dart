@@ -8,25 +8,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_sandbox/main.dart';
+import 'package:flutter_sandbox/widgets/cupertino_widget.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
-
   testWidgets('One Text widget on screen test.', (WidgetTester tester) async {
     // Request specific screen resolution for test
     await tester.binding.setSurfaceSize(
@@ -65,7 +49,19 @@ void main() {
     );
     // Find the added Icon widgets
     final Finder findIcon = find.byIcon((Icons.check));
-    // Verify that there are 3 Icon widgets
+    // Verify that there are 3 Icon widgets rendered 
     expect(findIcon, findsNWidgets(3));
+  });
+
+  testWidgets('Cupertino widget displays all required sub-widgets test', (WidgetTester tester) async {
+    // Add a Cupertino widget to the tester
+    final text = Text('My favorite car is the Tesla roadster!');
+    final image = Image.asset('images/tesla.jpg');
+    final icon = Icon(Icons.drive_eta);
+    await tester.pumpWidget(CupertinoWidget(text: text, image: image, icon: icon));
+    // Verify that the sub-widgets render on the screen
+    expect(find.byWidget(text), findsOneWidget);
+    expect(find.byWidget(image), findsOneWidget);
+    expect(find.byWidget(icon), findsOneWidget);
   });
 }
