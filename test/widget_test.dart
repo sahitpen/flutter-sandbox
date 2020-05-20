@@ -14,7 +14,6 @@ void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
-
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
     expect(find.text('1'), findsNothing);
@@ -26,5 +25,47 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
+  });
+
+  testWidgets('One Text widget on screen test.', (WidgetTester tester) async {
+    // Request specific screen resolution for test
+    await tester.binding.setSurfaceSize(
+      Size(2436, 1125), // iPhone X screen resolution
+    );
+    // Add a sample widget to the tester
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(),
+          body: Container(
+            child: Text("This is sample text."),
+          ),
+        ),
+      ),
+    );
+    // Find the added Text widget
+    final Finder findText = find.text('This is sample text.');
+    // Verify that there is 1 only text widget
+    expect(findText, findsOneWidget);
+  });
+
+  testWidgets('Multiple Icon widgets on screen test.',
+      (WidgetTester tester) async {
+    // Add Icon widgets to the tester
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Column(
+          children: <Widget>[
+            Icon(Icons.check),
+            Icon(Icons.check),
+            Icon(Icons.check),
+          ],
+        ),
+      ),
+    );
+    // Find the added Icon widgets
+    final Finder findIcon = find.byIcon((Icons.check));
+    // Verify that there are 3 Icon widgets
+    expect(findIcon, findsNWidgets(3));
   });
 }
