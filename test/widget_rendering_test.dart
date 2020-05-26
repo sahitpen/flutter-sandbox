@@ -8,8 +8,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_sandbox/widgets/cupertino_widget.dart';
-import 'package:flutter_sandbox/widgets/todo_list_widget.dart';
+import 'package:flutter_sandbox/views/cupertino_widget.dart';
+import 'package:flutter_sandbox/views/todo_list_widget.dart';
 
 void main() {
   testWidgets('One Text widget on screen test.', (WidgetTester tester) async {

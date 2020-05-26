@@ -24,13 +24,14 @@ class _TodoListWidgetState extends State<TodoListWidget> {
                 controller: controller,
               ),
               Expanded(
-                  child: ListView.builder(
-                itemCount: tasks.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final task = tasks[index];
-                  return ListTile(title: Text(task));
-                },
-              )),
+                child: ListView.builder(
+                  itemCount: tasks.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final task = tasks[index];
+                    return ListTile(title: Text(task));
+                  },
+                 )
+              ),
             ],
           ),
         ),
