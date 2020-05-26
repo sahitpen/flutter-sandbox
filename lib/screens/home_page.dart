@@ -13,13 +13,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Playground',
-      theme: ThemeData(fontFamily: 'OpenSans'),
+      theme: ThemeData(
+          fontFamily: 'OpenSans',
+          scaffoldBackgroundColor: Colors.white,
+          primaryColor: Colors.white,
+          cardColor: Colors.grey[100]
+      ),
       home: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           centerTitle: false,
-          elevation: 0,
-          backgroundColor: Colors.white,
+          elevation: 1,
           title: Text(
             'Playground',
             style: Styles.navBarText,
@@ -89,11 +92,9 @@ class DemoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (demo.pageRoute != null) { 
+        if (demo.pageRoute != null) {
           Navigator.push(
-            context, 
-            MaterialPageRoute(builder: (context) => demo.pageRoute)
-          );
+              context, MaterialPageRoute(builder: (context) => demo.pageRoute));
         }
       },
       child: Card(
@@ -107,7 +108,6 @@ class DemoCard extends StatelessWidget {
           ),
         ),
         elevation: 3.0,
-        color: Colors.grey[100],
       ),
     );
   }
