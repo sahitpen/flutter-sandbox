@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/common/styles.dart';
+import 'package:flutter_sandbox/views/demo_scaffold.dart';
 
 class DismissiblePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
-        title: Text(
-          'Dismissable',
-          style: Styles.navBarText,
-        ),
-      ),
+    return DemoScaffold(
+      title: 'Dismissible',
       body: Column(children: <Widget>[
         CustomDismissible(
           title: 'Swipe to dismiss (basic)',
