@@ -18,4 +18,6 @@ class Styles {
       fontWeight: FontWeight.w600,
       fontSize: 15.0
   );
+
+  static final cardTextLight = cardText.copyWith(color: Colors.white);
 }
