@@ -17,7 +17,12 @@ class _DraggablePageState extends State<DraggablePage> {
         padding: EdgeInsets.only(top: 16.0),
         child: ListView(
           children: <Widget>[
-            _makeDraggable(child: DragContainer(text: 'Basic')),
+            _makeDraggable(
+              child: DragContainer(
+                text: 'Basic',
+                key: ValueKey('draggable_1_text'),
+              ),
+            ),
             SizedBox(height: 10),
             _makeDraggable(
               child: DragContainer(text: 'Long Press Drag'),
@@ -42,7 +47,8 @@ class _DraggablePageState extends State<DraggablePage> {
             SizedBox(height: 10),
             Visibility(
               visible: !isDragSuccessful,
-              child: _makeDraggable(child: DragContainer(text: 'Droppable Drag Card')),
+              child: _makeDraggable(
+                  child: DragContainer(text: 'Droppable Drag Card')),
             ),
             DragTarget(
               builder: (context, candidateData, rejectedData) {
@@ -69,28 +75,32 @@ class _DraggablePageState extends State<DraggablePage> {
     );
   }
 
-  Draggable _makeDraggable({@required Widget child, Widget feedback, Widget childWhenDragging,
-    bool isLongPress = false}) {
-      if (isLongPress) {
-        return LongPressDraggable(
-          child: child,
-          feedback: feedback ?? child,
-          childWhenDragging: childWhenDragging ?? Container(),
-        );
-      } else {
-        return Draggable(
-          child: child,
-          feedback: feedback ?? child,
-          childWhenDragging: childWhenDragging ?? Container(),
-        );
-      }
+  Draggable _makeDraggable(
+      {@required Widget child,
+      Widget feedback,
+      Widget childWhenDragging,
+      bool isLongPress = false}) {
+    if (isLongPress) {
+      return LongPressDraggable(
+        child: child,
+        feedback: feedback ?? child,
+        childWhenDragging: childWhenDragging ?? Container(),
+      );
+    } else {
+      return Draggable(
+        child: child,
+        feedback: feedback ?? child,
+        childWhenDragging: childWhenDragging ?? Container(),
+      );
+    }
   }
 }
 
 class DragContainer extends StatelessWidget {
   final Color color;
   final String text;
-  DragContainer({this.color, this.text});
+  final Key key;
+  DragContainer({this.color, this.text, this.key});
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +112,7 @@ class DragContainer extends StatelessWidget {
         child: Text(
           text ?? '',
           style: Styles.cardTextLight,
+          key: key,
         ),
       ),
     );
