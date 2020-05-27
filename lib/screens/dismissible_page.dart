@@ -10,20 +10,16 @@ class DismissiblePage extends StatelessWidget {
         CustomDismissible(
           title: 'Swipe to dismiss (basic)',
           id: 'dismissible_1',
-          swipeDirection: DismissDirection.horizontal,
-          isVisibleSnackBar: false,
         ),
         CustomDismissible(
           title: 'Swipe to dismiss (show snackbar)',
           id: 'dismissible_2',
-          swipeDirection: DismissDirection.horizontal,
           isVisibleSnackBar: true,
         ),
         CustomDismissible(
           title: 'Swipe vertically to dismiss',
           id: 'dismissible_3',
           swipeDirection: DismissDirection.vertical,
-          isVisibleSnackBar: false,
         ),
       ]),
     );
@@ -33,14 +29,14 @@ class DismissiblePage extends StatelessWidget {
 class CustomDismissible extends StatelessWidget {
   final String title;
   final String id;
-  final bool isVisibleSnackBar;
   final DismissDirection swipeDirection;
+  bool isVisibleSnackBar = false;
 
   CustomDismissible({
     @required this.title,
     @required this.id,
-    @required this.swipeDirection,
-    @required this.isVisibleSnackBar,
+    this.swipeDirection,
+    this.isVisibleSnackBar,
   });
 
   @override
@@ -52,7 +48,7 @@ class CustomDismissible extends StatelessWidget {
       ),
       background: Container(color: Colors.blueGrey),
       key: ValueKey(id),
-      direction: swipeDirection,
+      direction: swipeDirection ?? DismissDirection.horizontal,
       onDismissed: (DismissDirection direction) {
         if (isVisibleSnackBar)
           Scaffold.of(context).showSnackBar(SnackBar(
