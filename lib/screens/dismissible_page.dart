@@ -43,7 +43,10 @@ class CustomDismissible extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       child: ListTile(
-        title: Text(title),
+        title: Text(
+          title,
+          key: ValueKey(id + "_text"),
+        ),
         trailing: Icon(Icons.touch_app),
       ),
       background: Container(color: Colors.blueGrey),
