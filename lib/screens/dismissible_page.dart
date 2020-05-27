@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/common/styles.dart';
 import 'package:flutter_sandbox/views/demo_scaffold.dart';
 
 class DismissiblePage extends StatelessWidget {
