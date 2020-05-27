@@ -18,10 +18,7 @@ class _DraggablePageState extends State<DraggablePage> {
         child: ListView(
           children: <Widget>[
             _makeDraggable(
-              child: DragContainer(
-                text: 'Basic',
-                key: ValueKey('draggable_1_text'),
-              ),
+              child: DragContainer(text: 'Basic'),
             ),
             SizedBox(height: 10),
             _makeDraggable(
@@ -99,8 +96,7 @@ class _DraggablePageState extends State<DraggablePage> {
 class DragContainer extends StatelessWidget {
   final Color color;
   final String text;
-  final Key key;
-  DragContainer({this.color, this.text, this.key});
+  DragContainer({this.color, this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +108,7 @@ class DragContainer extends StatelessWidget {
         child: Text(
           text ?? '',
           style: Styles.cardTextLight,
-          key: key,
+          key: ValueKey(text),
         ),
       ),
     );
