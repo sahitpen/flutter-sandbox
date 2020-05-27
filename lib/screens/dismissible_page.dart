@@ -30,7 +30,7 @@ class CustomDismissible extends StatelessWidget {
   final String title;
   final String id;
   final DismissDirection swipeDirection;
-  bool isVisibleSnackBar = false;
+  final isVisibleSnackBar;
 
   CustomDismissible({
     @required this.title,
