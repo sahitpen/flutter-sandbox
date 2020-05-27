@@ -11,37 +11,28 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Playground',
-      theme: ThemeData(
-          fontFamily: 'OpenSans',
-          scaffoldBackgroundColor: Colors.white,
-          primaryColor: Colors.white,
-          cardColor: Colors.grey[100]
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: false,
-          elevation: 1,
-          title: Text(
-            'Playground',
-            style: Styles.navBarText,
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        elevation: 1,
+        title: Text(
+          'Playground',
+          style: Styles.navBarText,
         ),
-        body: Padding(
-          padding: EdgeInsets.only(top: 10),
-          child: ListView(
-            children: <Widget>[
-              DemoSection(
-                category: 'Touch Interactions',
-                demoList: DemoList.touchInteractionDemos,
-              ),
-              DemoSection(
-                category: 'Input',
-                demoList: DemoList.inputDemos,
-              ),
-            ],
-          ),
+      ),
+      body: Padding(
+        padding: EdgeInsets.only(top: 10),
+        child: ListView(
+          children: <Widget>[
+            DemoSection(
+              category: 'Touch Interactions',
+              demoList: DemoList.touchInteractionDemos,
+            ),
+            DemoSection(
+              category: 'Input',
+              demoList: DemoList.inputDemos,
+            ),
+          ],
         ),
       ),
     );
