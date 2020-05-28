@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/common/styles.dart';
+import 'package:flutter_sandbox/common/constants/app_text.dart';
 import 'package:flutter_sandbox/views/demo_scaffold.dart';
 
 class DraggablePage extends StatefulWidget {
@@ -29,7 +29,7 @@ class _DraggablePageState extends State<DraggablePage> {
             _makeDraggable(
               child: DragContainer(text: 'Stationary Dragging Child'),
               childWhenDragging: DragContainer(
-                color: Colors.grey[800],
+                color: Theme.of(context).primaryColorDark,
                 text: 'Stationary child!',
               ),
             ),
@@ -37,7 +37,7 @@ class _DraggablePageState extends State<DraggablePage> {
             _makeDraggable(
               child: DragContainer(text: 'Custom Drag Feedback'),
               feedback: DragContainer(
-                color: Colors.blueGrey[900],
+                color: Theme.of(context).highlightColor,
                 text: 'Dragging!',
               ),
             ),
@@ -51,11 +51,11 @@ class _DraggablePageState extends State<DraggablePage> {
               builder: (context, candidateData, rejectedData) {
                 return Container(
                   height: 150,
-                  color: Colors.grey[300],
+                  color: Theme.of(context).cardColor,
                   child: Center(
                     child: Text(
                       'Drag card here!',
-                      style: Styles.cardText,
+                      style: AppText.subtitle,
                     ),
                   ),
                 );
@@ -101,13 +101,13 @@ class DragContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: color ?? Colors.blueGrey,
+      color: color ?? Theme.of(context).highlightColor,
       height: 100,
       width: 300,
       child: Center(
         child: Text(
           text ?? '',
-          style: Styles.cardTextLight,
+          style: AppText.subtitleLight,
           key: ValueKey(text),
         ),
       ),

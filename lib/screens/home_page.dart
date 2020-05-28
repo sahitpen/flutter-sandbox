@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/common/styles.dart';
+import 'package:flutter_sandbox/common/constants/app_text.dart';
 import 'package:flutter_sandbox/models/demo.dart';
 import 'package:flutter_sandbox/models/demo_list.dart';
 
@@ -12,32 +12,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100),
-        child: AppBar(
-          centerTitle: false,
-          elevation: 1,
-          title: Text(
-            'Hey Sahit.',
-            style: Styles.appBarTextLight,
-          ),
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 16.0),
-              child: Icon(
-                Icons.settings,
-                color: Colors.grey[300],
-              ),
-            )
-          ],
-        ),
-      ),
+      backgroundColor: Theme.of(context).primaryColor,
+      appBar: PlaygroundAppBar(),
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30),),
-      ),
-        padding: EdgeInsets.only(top: 10),
+          color: Theme.of(context).canvasColor,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
         child: ListView(
           children: <Widget>[
             DemoSection(
@@ -52,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Theme.of(context).cardColor,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -63,7 +47,36 @@ class _HomePageState extends State<HomePage> {
             title: Text('Profile'),
           )
         ],
-        selectedItemColor: Colors.lightBlue,
+        selectedItemColor: Theme.of(context).accentColor,
+      ),
+    );
+  }
+}
+
+class PlaygroundAppBar extends PreferredSize {
+  @override
+  Size get preferredSize => Size.fromHeight(150);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: preferredSize.height,
+      child: AppBar(
+        centerTitle: false,
+        elevation: 1,
+        title: Text(
+          'Hey Sahit.',
+          style: AppText.appBarLight,
+        ),
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: Icon(
+              Icons.settings,
+              color: Theme.of(context).cardColor,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -80,25 +93,26 @@ class DemoSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Text(
             this.category,
-            style: Styles.headerText,
+            style: AppText.header,
           ),
         ),
         Container(
           height: 130,
           child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: demoList.length,
-              itemBuilder: (context, index) {
-                final demo = this.demoList[index];
-                return Container(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  width: 200,
-                  child: DemoCard(demo: demo),
-                );
-              }),
+            scrollDirection: Axis.horizontal,
+            itemCount: demoList.length,
+            itemBuilder: (context, index) {
+              final demo = this.demoList[index];
+              return Container(
+                padding: EdgeInsets.only(left: 16.0),
+                width: 200,
+                child: DemoCard(demo: demo),
+              );
+            },
+          ),
         ),
       ],
     );
@@ -125,7 +139,7 @@ class DemoCard extends StatelessWidget {
         child: Center(
           child: Text(
             demo.name,
-            style: Styles.cardText,
+            style: AppText.subtitle,
           ),
         ),
         elevation: 3.0,

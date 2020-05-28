@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/common/styles.dart';
+import 'package:flutter_sandbox/common/constants/app_text.dart';
 
 class DemoScaffold extends StatelessWidget {
   final String title;
@@ -9,16 +9,16 @@ class DemoScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).canvasColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).canvasColor,
         iconTheme: IconThemeData(
-          color: Colors.black,
+          color: Theme.of(context).primaryColorDark,
         ),
         title: Text(
           title,
-          style: Styles.appBarText,
+          style: AppText.appBar,
         ),
       ),
       body: body,

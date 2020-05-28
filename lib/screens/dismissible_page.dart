@@ -49,7 +49,7 @@ class CustomDismissible extends StatelessWidget {
         ),
         trailing: Icon(Icons.touch_app),
       ),
-      background: Container(color: Colors.blueGrey),
+      background: Container(color: Theme.of(context).highlightColor),
       key: ValueKey(id),
       direction: swipeDirection ?? DismissDirection.horizontal,
       onDismissed: (DismissDirection direction) {
