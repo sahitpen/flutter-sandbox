@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final demoPages = DemoList.demoPages;
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: PlaygroundAppBar(),
@@ -24,28 +25,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         child: ListView(
-          children: <Widget>[
-            DemoSection(
-              category: 'Touch Interactions',
-              demoList: DemoList.touchInteractionDemos,
-            ),
-            DemoSection(
-              category: 'Inputs',
-              demoList: DemoList.inputDemos,
-            ),
-            DemoSection(
-              category: 'Information Displays',
-              demoList: DemoList.informationDisplayDemos,
-            ),
-            DemoSection(
-              category: 'Buttons',
-              demoList: DemoList.buttonDemos,
-            ),
-            DemoSection(
-              category: 'Panels',
-              demoList: DemoList.panelDemos,
-            ),
-          ],
+          key: ValueKey('widget_category_list'),
+          children: _createDemoPages(demoPages),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -63,6 +44,14 @@ class _HomePageState extends State<HomePage> {
         selectedItemColor: Theme.of(context).accentColor,
       ),
     );
+  }
+
+  List<Widget> _createDemoPages(Map<String, List<Demo>> demoPages) {
+    List<Widget> demoSections = [];
+    demoPages.forEach((demoCategory, categoryPages) { 
+      demoSections.add(DemoSection(category: demoCategory, demoList: categoryPages));
+    });
+    return demoSections;
   }
 }
 
@@ -132,6 +121,7 @@ class DemoSection extends StatelessWidget {
         Container(
           height: 130,
           child: ListView.builder(
+            key: ValueKey(category+'_demos_list'),
             scrollDirection: Axis.horizontal,
             itemCount: demoList.length,
             itemBuilder: (context, index) {
