@@ -11,7 +11,7 @@ class AppText {
 
   static const header = TextStyle(
       color: Colors.black,
-      fontWeight: FontWeight.w100,
+      fontWeight: FontWeight.w300,
       fontSize: 16.0
   );
 

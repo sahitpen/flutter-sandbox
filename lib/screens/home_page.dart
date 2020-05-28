@@ -32,6 +32,10 @@ class _HomePageState extends State<HomePage> {
               category: 'Input',
               demoList: DemoList.inputDemos,
             ),
+            DemoSection(
+              category: 'Information Displays',
+              demoList: DemoList.informationDisplayDemos,
+            ),
           ],
         ),
       ),
