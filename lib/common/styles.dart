@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
 class Styles {
-  static const navBarText = TextStyle(
+  static const appBarText = TextStyle(
     color: Colors.black,
+    fontWeight: FontWeight.w700,
+    fontSize: 25
+  );
+
+  static const appBarTextLight = TextStyle(
+    color: Colors.white,
     fontWeight: FontWeight.w700,
     fontSize: 25
   );

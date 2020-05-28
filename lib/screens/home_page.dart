@@ -12,24 +12,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        elevation: 1,
-        title: Text(
-          'Hey Sahit.',
-          style: Styles.navBarText,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(100),
+        child: AppBar(
+          centerTitle: false,
+          elevation: 1,
+          title: Text(
+            'Hey Sahit.',
+            style: Styles.appBarTextLight,
+          ),
+          actions: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: Icon(
+                Icons.settings,
+                color: Colors.grey[300],
+              ),
+            )
+          ],
         ),
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: Icon(
-              Icons.settings,
-              color: Colors.grey[400],
-            ),
-          )
-        ],
       ),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30),),
+      ),
         padding: EdgeInsets.only(top: 10),
         child: ListView(
           children: <Widget>[
@@ -45,6 +52,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.grey[100],
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

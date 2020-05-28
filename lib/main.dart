@@ -12,8 +12,8 @@ class PlaygroundApp extends StatelessWidget {
       title: 'Flutter Playground',
       theme: ThemeData(
           fontFamily: 'OpenSans',
-          scaffoldBackgroundColor: Colors.white,
-          primaryColor: Colors.white,
+          scaffoldBackgroundColor: Color.fromRGBO(6, 5, 24, 1),
+          primaryColor: Color.fromRGBO(6, 5, 24, 1),
           cardColor: Colors.grey[100]
       ),
       home: HomePage()

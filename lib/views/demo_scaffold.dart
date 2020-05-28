@@ -18,7 +18,7 @@ class DemoScaffold extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: Styles.navBarText,
+          style: Styles.appBarText,
         ),
       ),
       body: body,
