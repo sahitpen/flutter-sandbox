@@ -23,4 +23,19 @@ class DemoList{
     Demo(name: 'Chip', pageRoute: null),
     Demo(name: 'DataTable', pageRoute: null),
   ];
+  static final buttonDemos = [
+    Demo(name: 'ButtonBar', pageRoute: null),
+    Demo(name: 'DropdownButton', pageRoute: null),
+    Demo(name: 'FlatButton', pageRoute: null),
+    Demo(name: 'IconButton', pageRoute: null),
+    Demo(name: 'FloatingActionButton', pageRoute: null),
+    Demo(name: 'OutlineButton', pageRoute: null),
+  ];
+  static final panelDemos = [
+    Demo(name: 'AlertDialog', pageRoute: null),
+    Demo(name: 'BottomSheet', pageRoute: null),
+    Demo(name: 'ExpansionPanel', pageRoute: null),
+    Demo(name: 'SimpleDialog', pageRoute: null),
+    Demo(name: 'SnackBar', pageRoute: null),
+  ];
 }

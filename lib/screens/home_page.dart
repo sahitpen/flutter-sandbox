@@ -30,12 +30,20 @@ class _HomePageState extends State<HomePage> {
               demoList: DemoList.touchInteractionDemos,
             ),
             DemoSection(
-              category: 'Input',
+              category: 'Inputs',
               demoList: DemoList.inputDemos,
             ),
             DemoSection(
               category: 'Information Displays',
               demoList: DemoList.informationDisplayDemos,
+            ),
+            DemoSection(
+              category: 'Buttons',
+              demoList: DemoList.buttonDemos,
+            ),
+            DemoSection(
+              category: 'Panels',
+              demoList: DemoList.panelDemos,
             ),
           ],
         ),
@@ -60,7 +68,7 @@ class _HomePageState extends State<HomePage> {
 
 class PlaygroundAppBar extends PreferredSize {
   @override
-  Size get preferredSize => Size.fromHeight(150);
+  Size get preferredSize => Size.fromHeight(125);
 
   @override
   Widget build(BuildContext context) {
