@@ -4,40 +4,38 @@ import 'package:flutter_sandbox/screens/progress_indicator_page.dart';
 import 'package:flutter_sandbox/screens/slider_page.dart';
 
 import 'demo.dart';
+import 'demo_names.dart';
 
 class DemoList {
-  static final demoPages = {
-    'Touch Interactions': [
-      Demo(name: 'Dismissible', pageRoute: DismissiblePage()),
-      Demo(name: 'Draggable', pageRoute: DraggablePage()),
-      Demo(name: 'Scrollable', pageRoute: null),
-    ],
-    'Inputs': [
-      Demo(name: 'Slider', pageRoute: SliderPage()),
-      Demo(name: 'Form', pageRoute: null),
-      Demo(name: 'Form Field', pageRoute: null),
-      Demo(name: 'Text Field', pageRoute: null),
-    ],
-    'Information Displays': [
-      Demo(name: 'Progress Indicators', pageRoute: ProgressIndicatorPage()),
-      Demo(name: 'Card', pageRoute: null),
-      Demo(name: 'Chip', pageRoute: null),
-      Demo(name: 'DataTable', pageRoute: null),
-    ],
-    'Buttons': [
-      Demo(name: 'ButtonBar', pageRoute: null),
-      Demo(name: 'DropdownButton', pageRoute: null),
-      Demo(name: 'FlatButton', pageRoute: null),
-      Demo(name: 'IconButton', pageRoute: null),
-      Demo(name: 'FloatingActionButton', pageRoute: null),
-      Demo(name: 'OutlineButton', pageRoute: null),
-    ],
-    'Panels': [
-      Demo(name: 'AlertDialog', pageRoute: null),
-      Demo(name: 'BottomSheet', pageRoute: null),
-      Demo(name: 'ExpansionPanel', pageRoute: null),
-      Demo(name: 'SimpleDialog', pageRoute: null),
-      Demo(name: 'SnackBar', pageRoute: null),
-    ]
+  static final demoPages = DemoNames.allDemos.map((category, demos) {
+    final demoPages = demos
+        .map((demo) => Demo(name: demo, pageRoute: pageRoutes[demo]))
+        .toList();
+    return MapEntry(category, demoPages);
+  });
+
+  static final pageRoutes = {
+    'Dismissible': DismissiblePage(),
+    'Draggable': DraggablePage(),
+    'Scrollable': null,
+    'Slider': SliderPage(),
+    'Form': null,
+    'Form Field': null,
+    'Text Field': null,
+    'Progress Indicators': ProgressIndicatorPage(),
+    'Card': null,
+    'Chip': null,
+    'DataTable': null,
+    'ButtonBar': null,
+    'DropdownButton': null,
+    'FlatButton': null,
+    'IconButton': null,
+    'FloatingActionButton': null,
+    'OutlineButton': null,
+    'AlertDialog': null,
+    'BottomSheet': null,
+    'ExpansionPanel': null,
+    'SimpleDialog': null,
+    'SnackBar': null,
   };
 }
