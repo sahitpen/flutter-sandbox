@@ -15,6 +15,10 @@ class AppText {
       fontSize: 16.0
   );
 
+  static final headerLight = header.copyWith(color: Colors.white);
+
+  static final headerAccent = header.copyWith(color: Color.fromRGBO(251, 237, 255, 0.9));
+
   static const subtitle = TextStyle(
       color: Colors.grey,
       fontWeight: FontWeight.w600,

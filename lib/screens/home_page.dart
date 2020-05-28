@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/common/constants/app_text.dart';
 import 'package:flutter_sandbox/models/demo.dart';
 import 'package:flutter_sandbox/models/demo_list.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -66,11 +67,28 @@ class PlaygroundAppBar extends PreferredSize {
     return Container(
       height: preferredSize.height,
       child: AppBar(
-        centerTitle: false,
-        elevation: 1,
-        title: Text(
-          'Hey Sahit.',
-          style: AppText.appBarLight,
+        title: Column(
+          children: <Widget>[
+            Text(
+              'Hey Sahit.',
+              style: AppText.appBarLight,
+            ),
+          ],
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(30),
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 25.0),
+            child: TyperAnimatedTextKit(
+              isRepeatingAnimation: true,
+              pause: Duration(seconds: 4),
+              speed: Duration(milliseconds: 60),
+              text: ['Welcome to the playground.', 'Experiment with any widget.'],
+              textStyle: AppText.headerAccent,
+              textAlign: TextAlign.start,
+              alignment: AlignmentDirectional.topStart
+            ),
+          ),
         ),
         actions: <Widget>[
           Padding(
