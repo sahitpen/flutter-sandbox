@@ -1,4 +1,5 @@
 import 'package:flutter_driver/flutter_driver.dart';
+import 'package:flutter_sandbox/models/demo_names.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -35,6 +36,27 @@ void main() {
       expect(await driver.getText(findDraggableTile), 'Basic');
       // Tap the back arrow to get back to home page
       await driver.tap(find.byTooltip('Back'));
+    });
+  });
+  group('HomePage Test', () {
+    // Find the vertical scroll list
+    final findCategoryList = find.byValueKey('widget_category_list');
+    final demoNames = DemoNames.allDemos;
+    test('Verify that the category list contains all demo pages', () async {
+      // Verify that the category list contains all subcategories
+      for (String category in demoNames.keys) {
+        final findCategory = find.text(category);
+        await driver.scrollUntilVisible(findCategoryList, findCategory, dyScroll: -50);
+        expect(await driver.getText(findCategory), category);
+        // Verify that each subcategory list contains all demo pages 
+        final demoPages = demoNames[category];
+        final findDemoList = find.byValueKey(category+'_demos_list');
+        for (final demo in demoPages){
+          final findDemo = find.text(demo);
+          await driver.scrollUntilVisible(findDemoList, findDemo, dxScroll: 50);
+          expect(await driver.getText(findDemo), demo);
+        }
+      }
     });
   });
 }

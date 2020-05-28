@@ -26,7 +26,7 @@ class DemoNames {
       'OutlineButton',
     ],
     'Panels': [
-      'Alert Dialog',
+      'AlertDialog',
       'BottomSheet',
       'ExpansionPanel',
       'SimpleDialog',

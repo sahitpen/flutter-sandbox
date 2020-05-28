@@ -12,7 +12,7 @@ class DemoList {
       Demo(name: 'Draggable', pageRoute: DraggablePage()),
       Demo(name: 'Scrollable', pageRoute: null),
     ],
-    'Input': [
+    'Inputs': [
       Demo(name: 'Slider', pageRoute: SliderPage()),
       Demo(name: 'Form', pageRoute: null),
       Demo(name: 'Form Field', pageRoute: null),
