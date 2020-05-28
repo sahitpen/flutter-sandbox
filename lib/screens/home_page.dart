@@ -16,9 +16,18 @@ class _HomePageState extends State<HomePage> {
         centerTitle: false,
         elevation: 1,
         title: Text(
-          'Playground',
+          'Hey Sahit.',
           style: Styles.navBarText,
         ),
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: Icon(
+              Icons.settings,
+              color: Colors.grey[400],
+            ),
+          )
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 10),
@@ -34,6 +43,13 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+          BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('Profile'))
+        ],
+        selectedItemColor: Colors.lightBlue,
       ),
     );
   }
