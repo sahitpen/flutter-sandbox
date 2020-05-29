@@ -22,6 +22,12 @@ class DropdownButtonPage extends StatelessWidget {
             title: 'Custom Icon',
             widget: CustomDropdownButton(hasArrowIcon: true),
           ),
+          WidgetDisplay(
+            title: 'Colored',
+            widget: CustomDropdownButton(
+              dropdownColor: Theme.of(context).accentColor,
+            ),
+          ),
         ],
       ),
     );
@@ -30,9 +36,13 @@ class DropdownButtonPage extends StatelessWidget {
 
 class CustomDropdownButton extends StatefulWidget {
   final dropdownItems = ['One', 'Two', 'Three', 'Four'];
-  final hasUnderline;
-  final hasArrowIcon;
-  CustomDropdownButton({this.hasUnderline = false, this.hasArrowIcon = false});
+  final bool hasUnderline;
+  final bool hasArrowIcon;
+  final Color dropdownColor;
+  CustomDropdownButton({
+    this.hasUnderline = false,
+    this.hasArrowIcon = false,
+    this.dropdownColor,});
   @override
   _CustomDropdownButtonState createState() => _CustomDropdownButtonState();
 }
@@ -64,6 +74,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
       icon: widget.hasArrowIcon
           ? Icon(Icons.arrow_downward)
           : Icon(Icons.arrow_drop_down),
+      dropdownColor: widget.dropdownColor,
     );
   }
 }
