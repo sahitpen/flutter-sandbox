@@ -26,18 +26,6 @@ void main() {
       await driver.tap(find.byTooltip('Back'));
     });
   });
-  group('Draggable Demo Test', () {
-    // Find Draggable demo card
-    final findDraggableCard = find.text('Draggable');
-    // Run tests
-    test('Tapping Draggable demo card navigates to Draggable demo page', () async {
-      await driver.tap(findDraggableCard);
-      final findDraggableTile = find.byValueKey('Basic');
-      expect(await driver.getText(findDraggableTile), 'Basic');
-      // Tap the back arrow to get back to home page
-      await driver.tap(find.byTooltip('Back'));
-    });
-  });
   group('HomePage Test', () {
     // Find the vertical scroll list
     final findCategoryList = find.byValueKey('widget_category_list');
