@@ -16,17 +16,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: PlaygroundAppBar(),
-      body: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
+      body: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
         ),
-        child: ListView(
-          key: ValueKey('widget_category_list'),
-          children: _createDemoPages(demoPages),
+        child: Container(
+          color: Theme.of(context).canvasColor,
+          child: ListView(
+            key: ValueKey('widget_category_list'),
+            children: _createDemoPages(demoPages),
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -48,8 +48,9 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> _createDemoPages(Map<String, List<Demo>> demoPages) {
     List<Widget> demoSections = [];
-    demoPages.forEach((demoCategory, categoryPages) { 
-      demoSections.add(DemoSection(category: demoCategory, demoList: categoryPages));
+    demoPages.forEach((demoCategory, categoryPages) {
+      demoSections
+          .add(DemoSection(category: demoCategory, demoList: categoryPages));
     });
     return demoSections;
   }
@@ -77,14 +78,16 @@ class PlaygroundAppBar extends PreferredSize {
           child: Padding(
             padding: EdgeInsets.only(bottom: 25.0),
             child: TyperAnimatedTextKit(
-              isRepeatingAnimation: true,
-              pause: Duration(seconds: 4),
-              speed: Duration(milliseconds: 60),
-              text: ['Welcome to the playground.', 'Experiment with any widget.'],
-              textStyle: AppText.headerAccent,
-              textAlign: TextAlign.start,
-              alignment: AlignmentDirectional.topStart
-            ),
+                isRepeatingAnimation: true,
+                pause: Duration(seconds: 4),
+                speed: Duration(milliseconds: 60),
+                text: [
+                  'Welcome to the playground.',
+                  'Experiment with any widget.'
+                ],
+                textStyle: AppText.headerAccent,
+                textAlign: TextAlign.start,
+                alignment: AlignmentDirectional.topStart),
           ),
         ),
         actions: <Widget>[
@@ -121,7 +124,7 @@ class DemoSection extends StatelessWidget {
         Container(
           height: 130,
           child: ListView.builder(
-            key: ValueKey(category+'_demos_list'),
+            key: ValueKey(category + '_demos_list'),
             scrollDirection: Axis.horizontal,
             itemCount: demoList.length,
             itemBuilder: (context, index) {
