@@ -26,7 +26,6 @@ class DemoList {
     'Card': null,
     'Chip': null,
     'DataTable': null,
-    'ButtonBar': null,
     'DropdownButton': null,
     'FlatButton': null,
     'IconButton': null,

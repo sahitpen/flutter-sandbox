@@ -18,7 +18,6 @@ class DemoNames {
       'DataTable'
     ],
     'Buttons': [
-      'ButtonBar',
       'DropdownButton',
       'FlatButton',
       'IconButton',
