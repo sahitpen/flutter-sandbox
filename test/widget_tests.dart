@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/screens/dismissible_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_sandbox/views/cupertino_widget.dart';
-import 'package:flutter_sandbox/views/todo_list_widget.dart';
+import 'package:flutter_sandbox/views/examples/cupertino_widget.dart';
+import 'package:flutter_sandbox/views/examples/todo_list_widget.dart';
 
 void main() {
   group('Basic widget tests', () {
