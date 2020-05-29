@@ -2,6 +2,7 @@ import 'package:flutter_sandbox/screens/dismissible_page.dart';
 import 'package:flutter_sandbox/screens/draggable_page.dart';
 import 'package:flutter_sandbox/screens/dropdown_button_page.dart';
 import 'package:flutter_sandbox/screens/flat_button_page.dart';
+import 'package:flutter_sandbox/screens/icon_button_page.dart';
 import 'package:flutter_sandbox/screens/progress_indicator_page.dart';
 import 'package:flutter_sandbox/screens/slider_page.dart';
 
@@ -30,7 +31,7 @@ class DemoList {
     'DataTable': null,
     'DropdownButton': DropdownButtonPage(),
     'FlatButton': FlatButtonPage(),
-    'IconButton': null,
+    'IconButton': IconButtonPage(),
     'FloatingActionButton': null,
     'OutlineButton': null,
     'AlertDialog': null,
