@@ -1,5 +1,6 @@
 import 'package:flutter_sandbox/screens/dismissible_page.dart';
 import 'package:flutter_sandbox/screens/draggable_page.dart';
+import 'package:flutter_sandbox/screens/dropdown_button_page.dart';
 import 'package:flutter_sandbox/screens/progress_indicator_page.dart';
 import 'package:flutter_sandbox/screens/slider_page.dart';
 
@@ -26,7 +27,7 @@ class DemoList {
     'Card': null,
     'Chip': null,
     'DataTable': null,
-    'DropdownButton': null,
+    'DropdownButton': DropdownButtonPage(),
     'FlatButton': null,
     'IconButton': null,
     'FloatingActionButton': null,
