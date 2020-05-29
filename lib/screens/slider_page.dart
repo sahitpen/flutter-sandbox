@@ -8,35 +8,33 @@ class SliderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Sliders',
-      body: Container(
+      body: ListView(
         padding: EdgeInsets.all(16.0),
-        child: ListView(
-          children: <Widget>[
-            WidgetDisplay(
-              title: 'Basic',
-              widget: CustomSlider(),
+        children: <Widget>[
+          WidgetDisplay(
+            title: 'Basic',
+            widget: CustomSlider(),
+          ),
+          WidgetDisplay(
+            title: 'Divisioned',
+            widget: CustomSlider(divisions: 4),
+          ),
+          WidgetDisplay(
+            title: 'Labeled',
+            widget: CustomSlider(
+              divisions: 4,
+              hasLabel: true,
             ),
-            WidgetDisplay(
-              title: 'Divisioned',
-              widget: CustomSlider(divisions: 4),
-            ),
-            WidgetDisplay(
-              title: 'Labeled',
-              widget: CustomSlider(
-                divisions: 4,
-                hasLabel: true,
-              ),
-            ),
-            WidgetDisplay(
-              title: 'Range',
-              widget: CustomRangeSlider(),
-            ),
-            WidgetDisplay(
-              title: 'Cupertino',
-              widget: CustomCupertinoSlider(),
-            ),
-          ],
-        ),
+          ),
+          WidgetDisplay(
+            title: 'Range',
+            widget: CustomRangeSlider(),
+          ),
+          WidgetDisplay(
+            title: 'Cupertino',
+            widget: CustomCupertinoSlider(),
+          ),
+        ],
       ),
     );
   }
