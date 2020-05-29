@@ -6,33 +6,16 @@ import 'package:flutter_sandbox/views/widget_display.dart';
 class SliderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Map<String, Widget> sliders = {
+      'Basic': CustomSlider(),
+      'Divisioned': CustomSlider(divisions: 4),
+      'Labeled': CustomSlider(divisions: 4, hasLabel: true),
+      'Range': CustomRangeSlider(),
+      'Cupertino': CustomCupertinoSlider(),
+    };
     return DemoScaffold(
       title: 'Sliders',
-      widgets: [
-        WidgetDisplay(
-          title: 'Basic',
-          widget: CustomSlider(),
-        ),
-        WidgetDisplay(
-          title: 'Divisioned',
-          widget: CustomSlider(divisions: 4),
-        ),
-        WidgetDisplay(
-          title: 'Labeled',
-          widget: CustomSlider(
-            divisions: 4,
-            hasLabel: true,
-          ),
-        ),
-        WidgetDisplay(
-          title: 'Range',
-          widget: CustomRangeSlider(),
-        ),
-        WidgetDisplay(
-          title: 'Cupertino',
-          widget: CustomCupertinoSlider(),
-        ),
-      ],
+      widgets: createWidgetDisplays(sliders),
     );
   }
 }

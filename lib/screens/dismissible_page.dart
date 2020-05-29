@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/views/demo_scaffold.dart';
+import 'package:flutter_sandbox/views/widget_display.dart';
 
 class DismissiblePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return DemoScaffold(
-      title: 'Dismissible',
-      widgets: [
-        CustomDismissible(
+    final Map<String, Widget> dismissibles = {
+      'Basic': CustomDismissible(
           title: 'Swipe to dismiss (basic)',
           id: 'dismissible_1',
         ),
-        CustomDismissible(
+      'Snackbar': CustomDismissible(
           title: 'Swipe to dismiss (show snackbar)',
           id: 'dismissible_2',
           isVisibleSnackBar: true,
         ),
-        CustomDismissible(
+      'Vertical Dismiss':  CustomDismissible(
           title: 'Swipe vertically to dismiss',
           id: 'dismissible_3',
           swipeDirection: DismissDirection.vertical,
         ),
-      ],
+    };
+    return DemoScaffold(
+      title: 'Dismissible',
+      widgets: createWidgetDisplays(dismissibles, showTitles: false),
     );
   }
 }

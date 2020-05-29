@@ -5,43 +5,32 @@ import 'package:flutter_sandbox/views/widget_display.dart';
 class FlatButtonPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Map<String, Widget> buttons = {
+      'Basic': FlatButton(
+        child: Text('Text Button'),
+        onPressed: () {},
+      ),
+      'Icon': FlatButton(
+        color: Theme.of(context).cardColor,
+        child: Icon(Icons.person),
+        onPressed: () {},
+      ),
+      'Colored': FlatButton(
+        color: Theme.of(context).accentColor,
+        child: Text('Colored Button'),
+        onPressed: () {},
+      ),
+      'Splash': FlatButton(
+        color: Theme.of(context).primaryColor,
+        textColor: Theme.of(context).canvasColor,
+        splashColor: Theme.of(context).accentColor,
+        child: Text('Splash Color'),
+        onPressed: () {},
+      ),
+    };
     return DemoScaffold(
       title: 'Flat Buttons',
-      widgets: [
-        WidgetDisplay(
-          title: 'Basic',
-          widget: FlatButton(
-            child: Text('Text Button'),
-            onPressed: () {},
-          ),
-        ),
-        WidgetDisplay(
-          title: 'Icon',
-          widget: FlatButton(
-            color: Theme.of(context).cardColor,
-            child: Icon(Icons.person),
-            onPressed: () {},
-          ),
-        ),
-        WidgetDisplay(
-          title: 'Colored',
-          widget: FlatButton(
-            color: Theme.of(context).accentColor,
-            child: Text('Colored Button'),
-            onPressed: () {},
-          ),
-        ),
-        WidgetDisplay(
-          title: 'Splash',
-          widget: FlatButton(
-            color: Theme.of(context).primaryColor,
-            textColor: Theme.of(context).canvasColor,
-            splashColor: Theme.of(context).accentColor,
-            child: Text('Splash Color'),
-            onPressed: () {},
-          ),
-        ),
-      ],
+      widgets: createWidgetDisplays(buttons)
     );
   }
 }

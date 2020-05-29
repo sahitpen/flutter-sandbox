@@ -5,28 +5,17 @@ import 'package:flutter_sandbox/views/widget_display.dart';
 class DropdownButtonPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Map<String, Widget> buttons = {
+      'Basic': CustomDropdownButton(),
+      'Underline': CustomDropdownButton(hasUnderline: true),
+      'Custom Icon': CustomDropdownButton(hasArrowIcon: true),
+      'Colored': CustomDropdownButton(
+        dropdownColor: Theme.of(context).accentColor,
+      ),
+    };
     return DemoScaffold(
       title: 'Dropdown Buttons',
-      widgets: [
-        WidgetDisplay(
-          title: 'Basic',
-          widget: CustomDropdownButton(),
-        ),
-        WidgetDisplay(
-          title: 'Underline',
-          widget: CustomDropdownButton(hasUnderline: true),
-        ),
-        WidgetDisplay(
-          title: 'Custom Icon',
-          widget: CustomDropdownButton(hasArrowIcon: true),
-        ),
-        WidgetDisplay(
-          title: 'Colored',
-          widget: CustomDropdownButton(
-            dropdownColor: Theme.of(context).accentColor,
-          ),
-        ),
-      ],
+      widgets: createWidgetDisplays(buttons),
     );
   }
 }
