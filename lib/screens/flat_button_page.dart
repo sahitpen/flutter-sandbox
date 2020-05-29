@@ -18,6 +18,14 @@ class FlatButtonPage extends StatelessWidget {
             ),
           ),
           WidgetDisplay(
+            title: 'Icon',
+            widget: FlatButton(
+              color: Theme.of(context).cardColor,
+              child: Icon(Icons.person),
+              onPressed: () {},
+            ),
+          ),
+          WidgetDisplay(
             title: 'Colored',
             widget: FlatButton(
               color: Theme.of(context).accentColor,
@@ -25,7 +33,7 @@ class FlatButtonPage extends StatelessWidget {
               onPressed: () {},
             ),
           ),
-           WidgetDisplay(
+          WidgetDisplay(
             title: 'Splash',
             widget: FlatButton(
               color: Theme.of(context).primaryColor,
