@@ -7,25 +7,22 @@ class ProgressIndicatorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Progress Indicators',
-      body: ListView(
-        padding: EdgeInsets.all(16.0),
-        children: <Widget>[
-          WidgetDisplay(
-            title: 'Circular',
-            widget: CircularProgressIndicator(),
+      widgets: [
+        WidgetDisplay(
+          title: 'Circular',
+          widget: CircularProgressIndicator(),
+        ),
+        WidgetDisplay(
+          title: 'Linear',
+          widget: LinearProgressIndicator(
+            backgroundColor: Theme.of(context).primaryColor,
           ),
-          WidgetDisplay(
-            title: 'Linear',
-            widget: LinearProgressIndicator(
-              backgroundColor: Theme.of(context).primaryColor,
-            ),
-          ),
-          WidgetDisplay(
-            title: 'Refresh',
-            widget: RefreshProgressIndicator(),
-          ),
-        ],
-      ),
+        ),
+        WidgetDisplay(
+          title: 'Refresh',
+          widget: RefreshProgressIndicator(),
+        ),
+      ],
     );
   }
 }

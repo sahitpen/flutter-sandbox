@@ -7,44 +7,41 @@ class FlatButtonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Flat Buttons',
-      body: ListView(
-        padding: EdgeInsets.all(16.0),
-        children: <Widget>[
-          WidgetDisplay(
-            title: 'Basic',
-            widget: FlatButton(
-              child: Text('Text Button'),
-              onPressed: () {},
-            ),
+      widgets: [
+        WidgetDisplay(
+          title: 'Basic',
+          widget: FlatButton(
+            child: Text('Text Button'),
+            onPressed: () {},
           ),
-          WidgetDisplay(
-            title: 'Icon',
-            widget: FlatButton(
-              color: Theme.of(context).cardColor,
-              child: Icon(Icons.person),
-              onPressed: () {},
-            ),
+        ),
+        WidgetDisplay(
+          title: 'Icon',
+          widget: FlatButton(
+            color: Theme.of(context).cardColor,
+            child: Icon(Icons.person),
+            onPressed: () {},
           ),
-          WidgetDisplay(
-            title: 'Colored',
-            widget: FlatButton(
-              color: Theme.of(context).accentColor,
-              child: Text('Colored Button'),
-              onPressed: () {},
-            ),
+        ),
+        WidgetDisplay(
+          title: 'Colored',
+          widget: FlatButton(
+            color: Theme.of(context).accentColor,
+            child: Text('Colored Button'),
+            onPressed: () {},
           ),
-          WidgetDisplay(
-            title: 'Splash',
-            widget: FlatButton(
-              color: Theme.of(context).primaryColor,
-              textColor: Theme.of(context).canvasColor,
-              splashColor: Theme.of(context).accentColor,
-              child: Text('Splash Color'),
-              onPressed: () {},
-            ),
+        ),
+        WidgetDisplay(
+          title: 'Splash',
+          widget: FlatButton(
+            color: Theme.of(context).primaryColor,
+            textColor: Theme.of(context).canvasColor,
+            splashColor: Theme.of(context).accentColor,
+            child: Text('Splash Color'),
+            onPressed: () {},
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

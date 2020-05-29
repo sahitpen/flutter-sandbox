@@ -3,8 +3,8 @@ import 'package:flutter_sandbox/common/constants/app_text.dart';
 
 class DemoScaffold extends StatelessWidget {
   final String title;
-  final Widget body;
-  DemoScaffold({this.title, this.body});
+  final List<Widget> widgets;
+  DemoScaffold({this.title, this.widgets});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,10 @@ class DemoScaffold extends StatelessWidget {
           style: AppText.appBar,
         ),
       ),
-      body: body,
+      body: ListView(
+        padding: EdgeInsets.all(16.0),
+        children: widgets
+      ),
     );
   }
 }

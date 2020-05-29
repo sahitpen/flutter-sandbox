@@ -6,24 +6,22 @@ class DismissiblePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Dismissible',
-      body: ListView(
-        children: <Widget>[
-          CustomDismissible(
-            title: 'Swipe to dismiss (basic)',
-            id: 'dismissible_1',
-          ),
-          CustomDismissible(
-            title: 'Swipe to dismiss (show snackbar)',
-            id: 'dismissible_2',
-            isVisibleSnackBar: true,
-          ),
-          CustomDismissible(
-            title: 'Swipe vertically to dismiss',
-            id: 'dismissible_3',
-            swipeDirection: DismissDirection.vertical,
-          ),
-        ],
-      ),
+      widgets: [
+        CustomDismissible(
+          title: 'Swipe to dismiss (basic)',
+          id: 'dismissible_1',
+        ),
+        CustomDismissible(
+          title: 'Swipe to dismiss (show snackbar)',
+          id: 'dismissible_2',
+          isVisibleSnackBar: true,
+        ),
+        CustomDismissible(
+          title: 'Swipe vertically to dismiss',
+          id: 'dismissible_3',
+          swipeDirection: DismissDirection.vertical,
+        ),
+      ],
     );
   }
 }

@@ -7,29 +7,26 @@ class DropdownButtonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoScaffold(
       title: 'Dropdown Buttons',
-      body: ListView(
-        padding: EdgeInsets.all(16.0),
-        children: <Widget>[
-          WidgetDisplay(
-            title: 'Basic',
-            widget: CustomDropdownButton(),
+      widgets: [
+        WidgetDisplay(
+          title: 'Basic',
+          widget: CustomDropdownButton(),
+        ),
+        WidgetDisplay(
+          title: 'Underline',
+          widget: CustomDropdownButton(hasUnderline: true),
+        ),
+        WidgetDisplay(
+          title: 'Custom Icon',
+          widget: CustomDropdownButton(hasArrowIcon: true),
+        ),
+        WidgetDisplay(
+          title: 'Colored',
+          widget: CustomDropdownButton(
+            dropdownColor: Theme.of(context).accentColor,
           ),
-          WidgetDisplay(
-            title: 'Underline',
-            widget: CustomDropdownButton(hasUnderline: true),
-          ),
-          WidgetDisplay(
-            title: 'Custom Icon',
-            widget: CustomDropdownButton(hasArrowIcon: true),
-          ),
-          WidgetDisplay(
-            title: 'Colored',
-            widget: CustomDropdownButton(
-              dropdownColor: Theme.of(context).accentColor,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -42,7 +39,8 @@ class CustomDropdownButton extends StatefulWidget {
   CustomDropdownButton({
     this.hasUnderline = false,
     this.hasArrowIcon = false,
-    this.dropdownColor,});
+    this.dropdownColor,
+  });
   @override
   _CustomDropdownButtonState createState() => _CustomDropdownButtonState();
 }
