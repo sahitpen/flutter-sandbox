@@ -55,7 +55,7 @@ class CustomDismissible extends StatelessWidget {
       key: ValueKey(id),
       direction: swipeDirection ?? DismissDirection.horizontal,
       onDismissed: (DismissDirection direction) {
-        if (isVisibleSnackBar)
+        if (isVisibleSnackBar != null && isVisibleSnackBar)
           Scaffold.of(context).showSnackBar(SnackBar(
             content: Text('Tile was dismissed!'),
           ));

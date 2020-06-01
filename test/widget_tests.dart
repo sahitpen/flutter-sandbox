@@ -6,6 +6,8 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sandbox/bloc/todo_bloc.dart';
 import 'package:flutter_sandbox/screens/dismissible_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -57,39 +59,44 @@ void main() {
     });
   });
 
-    testWidgets('Cupertino widget displays all required sub-widgets test',
-        (WidgetTester tester) async {
-      // Add a Cupertino widget to the tester
-      final text = Text('My favorite car is the Tesla roadster!');
-      final image = Image.asset('images/tesla.jpg');
-      final icon = Icon(Icons.drive_eta);
-      await tester
-          .pumpWidget(CupertinoWidget(text: text, image: image, icon: icon));
-      // Verify that the sub-widgets render on the screen
-      expect(find.byWidget(text), findsOneWidget);
-      expect(find.byWidget(image), findsOneWidget);
-      expect(find.byWidget(icon), findsOneWidget);
-    });
+  testWidgets('Cupertino widget displays all required sub-widgets test',
+      (WidgetTester tester) async {
+    // Add a Cupertino widget to the tester
+    final text = Text('My favorite car is the Tesla roadster!');
+    final image = Image.asset('images/tesla.jpg');
+    final icon = Icon(Icons.drive_eta);
+    await tester
+        .pumpWidget(CupertinoWidget(text: text, image: image, icon: icon));
+    // Verify that the sub-widgets render on the screen
+    expect(find.byWidget(text), findsOneWidget);
+    expect(find.byWidget(image), findsOneWidget);
+    expect(find.byWidget(icon), findsOneWidget);
+  });
 
-    testWidgets('Adding a task to the TodoList widget test',
-        (WidgetTester tester) async {
-      // Add the widget
-      await tester.pumpWidget(TodoListPage());
+  testWidgets('Adding a task to the TodoList widget test',
+      (WidgetTester tester) async {
+    // Add the widget
+    await tester.pumpWidget(MaterialApp(
+      home: BlocProvider(
+        create: (context) => TodoBloc(),
+        child: TodoListPage(),
+      ),
+    ));
 
-      // Enter 'Take out the trash.' into the TextField
-      final findTextField = find.byType(TextField);
-      await tester.enterText(findTextField, 'Take out the trash.');
+    // Enter 'Take out the trash.' into the TextField
+    final findTextField = find.byType(TextField);
+    await tester.enterText(findTextField, 'Take out the trash.');
 
-      // Press the add button
-      final findButton = find.byType(FloatingActionButton);
-      await tester.tap(findButton);
+    // Press the add button
+    final findButton = find.byType(FloatingActionButton);
+    await tester.tap(findButton);
 
-      // Build the widget again to reflect changes
-      await tester.pump();
+    // Build the widget again to reflect changes
+    await tester.pump();
 
-      // Verify that the Text was added to the screen
-      expect(find.text('Take out the trash.'), findsOneWidget);
-    });
+    // Verify that the Text was added to the screen
+    expect(find.text('Take out the trash.'), findsNWidgets(2));
+  });
 
   group('Dimissible Page widget tests', () {
     final dismissiblePage = MaterialApp(home: DismissiblePage());
