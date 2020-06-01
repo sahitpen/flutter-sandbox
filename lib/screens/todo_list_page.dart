@@ -12,16 +12,19 @@ class TodoListPage extends StatelessWidget {
       title: "Todo List",
       widgets: [
         TextField(
+            key: ValueKey('add_task_field'),
             decoration: InputDecoration(
               hintText: 'Enter your task here.',
               contentPadding: EdgeInsets.symmetric(horizontal: 16),
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
             ),
             controller: controller),
         BlocBuilder<TodoBloc, List<String>>(
           builder: (context, tasks) {
             return ListView.builder(
               shrinkWrap: true,
+              physics: ScrollPhysics(),
               itemCount: tasks.length,
               itemBuilder: (BuildContext context, int index) {
                 final task = tasks[index];
@@ -43,6 +46,7 @@ class TodoListPage extends StatelessWidget {
         ),
       ],
       floatingActionButton: FloatingActionButton(
+          key: ValueKey('add_task_button'),
           onPressed: () => todoBloc.add(AddTodoItem(controller.text)),
           child: Icon(
             Icons.add,
