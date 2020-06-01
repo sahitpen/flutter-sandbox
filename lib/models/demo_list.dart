@@ -1,3 +1,5 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sandbox/bloc/todo_bloc.dart';
 import 'package:flutter_sandbox/screens/dismissible_page.dart';
 import 'package:flutter_sandbox/screens/draggable_page.dart';
 import 'package:flutter_sandbox/screens/dropdown_button_page.dart';
@@ -11,7 +13,7 @@ import 'demo.dart';
 import 'demo_names.dart';
 
 class DemoList {
-  static final demoPages = DemoNames.allDemos.map((category, demos) {
+  static final demoPages = DemoNames.allDemos.map<String, List<Demo>>((category, demos) {
     final demoPages = demos
         .map((demo) => Demo(name: demo, pageRoute: pageRoutes[demo]))
         .toList();
@@ -40,6 +42,9 @@ class DemoList {
     'ExpansionPanel': null,
     'SimpleDialog': null,
     'SnackBar': null,
-    'BLoC': TodoListPage()
+    'BLoC': BlocProvider(
+      create: (context) => TodoBloc(),
+      child: TodoListPage(),
+    ),
   };
 }
