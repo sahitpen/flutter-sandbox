@@ -10,7 +10,7 @@ import 'package:flutter_sandbox/screens/dismissible_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_sandbox/views/examples/cupertino_widget.dart';
-import 'package:flutter_sandbox/views/examples/todo_list_widget.dart';
+import 'package:flutter_sandbox/screens/todo_list_page.dart';
 
 void main() {
   group('Basic widget tests', () {
@@ -74,7 +74,7 @@ void main() {
     testWidgets('Adding a task to the TodoList widget test',
         (WidgetTester tester) async {
       // Add the widget
-      await tester.pumpWidget(TodoListWidget());
+      await tester.pumpWidget(TodoListPage());
 
       // Enter 'Take out the trash.' into the TextField
       final findTextField = find.byType(TextField);

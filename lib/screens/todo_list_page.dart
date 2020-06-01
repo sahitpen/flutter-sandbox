@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class TodoListWidget extends StatefulWidget {
+class TodoListPage extends StatefulWidget {
   @override
-  _TodoListWidgetState createState() => _TodoListWidgetState();
+  _TodoListPageState createState() => _TodoListPageState();
 }
 
-class _TodoListWidgetState extends State<TodoListWidget> {
+class _TodoListPageState extends State<TodoListPage> {
   final tasks = <String>[];
   final controller = TextEditingController();
   @override

@@ -5,6 +5,7 @@ import 'package:flutter_sandbox/screens/flat_button_page.dart';
 import 'package:flutter_sandbox/screens/icon_button_page.dart';
 import 'package:flutter_sandbox/screens/progress_indicator_page.dart';
 import 'package:flutter_sandbox/screens/slider_page.dart';
+import 'package:flutter_sandbox/screens/todo_list_page.dart';
 
 import 'demo.dart';
 import 'demo_names.dart';
@@ -39,5 +40,6 @@ class DemoList {
     'ExpansionPanel': null,
     'SimpleDialog': null,
     'SnackBar': null,
+    'BLoC': TodoListPage()
   };
 }

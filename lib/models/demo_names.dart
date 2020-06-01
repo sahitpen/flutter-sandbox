@@ -31,5 +31,8 @@ class DemoNames {
       'SimpleDialog',
       'SnackBar',
     ],
+    'Architecture': [
+      'BLoC'
+    ],
   };
 }
