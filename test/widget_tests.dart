@@ -57,7 +57,6 @@ void main() {
     });
   });
 
-  group('TodoList widget tests', () {
     testWidgets('Cupertino widget displays all required sub-widgets test',
         (WidgetTester tester) async {
       // Add a Cupertino widget to the tester
@@ -91,7 +90,6 @@ void main() {
       // Verify that the Text was added to the screen
       expect(find.text('Take out the trash.'), findsOneWidget);
     });
-  });
 
   group('Dimissible Page widget tests', () {
     final dismissiblePage = MaterialApp(home: DismissiblePage());
