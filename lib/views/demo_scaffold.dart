@@ -4,7 +4,8 @@ import 'package:flutter_sandbox/common/constants/app_text.dart';
 class DemoScaffold extends StatelessWidget {
   final String title;
   final List<Widget> widgets;
-  DemoScaffold({this.title, this.widgets});
+  final FloatingActionButton floatingActionButton;
+  DemoScaffold({this.title, this.widgets, this.floatingActionButton});
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,7 @@ class DemoScaffold extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         children: widgets
       ),
+      floatingActionButton: floatingActionButton,
     );
   }
 }
