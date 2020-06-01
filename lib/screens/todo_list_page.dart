@@ -23,6 +23,7 @@ class TodoListPage extends StatelessWidget {
         BlocBuilder<TodoBloc, List<String>>(
           builder: (context, tasks) {
             return ListView.builder(
+              key: ValueKey('task_list'),
               shrinkWrap: true,
               physics: ScrollPhysics(),
               itemCount: tasks.length,

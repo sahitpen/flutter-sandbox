@@ -16,12 +16,14 @@ void main() {
   });
   group('Dismissible Demo Test', () {
     // Find Dismissible demo card
-    final findDimissibleCard = find.text("Dismissible");
+    final findDimissibleCard = find.text('Dismissible');
     // Run tests
-    test('Tapping Dismissible demo card navigates to Dismissible demo page', () async {
+    test('Tapping Dismissible demo card navigates to Dismissible demo page',
+        () async {
       await driver.tap(findDimissibleCard);
       final findDismissibleTile = find.byValueKey('dismissible_1_text');
-      expect(await driver.getText(findDismissibleTile), 'Swipe to dismiss (basic)');
+      expect(await driver.getText(findDismissibleTile),
+          'Swipe to dismiss (basic)');
       // Tap the back arrow to get back to home page
       await driver.tap(find.byTooltip('Back'));
     });
@@ -36,24 +38,45 @@ void main() {
         // Verify that the category list contains all subcategories
         for (String category in demoNames.keys) {
           final findCategory = find.text(category);
-          await driver.scrollUntilVisible(findCategoryList, findCategory, dyScroll: -50);
+          await driver.scrollUntilVisible(findCategoryList, findCategory,
+              dyScroll: -50);
           expect(await driver.getText(findCategory), category);
-          // Verify that each subcategory list contains all demo pages 
+          // Verify that each subcategory list contains all demo pages
           final demoPages = demoNames[category];
-          final findDemoList = find.byValueKey(category+'_demos_list');
-          for (final demo in demoPages){
+          final findDemoList = find.byValueKey(category + '_demos_list');
+          for (final demo in demoPages) {
             final findDemo = find.text(demo);
-            await driver.scrollUntilVisible(findDemoList, findDemo, dxScroll: 50);
+            await driver.scrollUntilVisible(findDemoList, findDemo,
+                dxScroll: 50);
             expect(await driver.getText(findDemo), demo);
           }
         }
       });
-      // Convert timeline to easily readible summary 
+      // Convert timeline to easily readible summary
       final summary = new TimelineSummary.summarize(timeline);
       // Write the summary to file
       summary.writeSummaryToFile('homepage_scrolling', pretty: true);
       // Also write the entire JSON timeline to file
       summary.writeTimelineToFile('homepage_scrolling', pretty: true);
+    });
+  });
+  group('TodoListPage Test', () {
+    // Find TodoList demo card
+    final findTodoListDemo = find.text('BLoC');
+    final task = 'This is sample task';
+    test('Add items to TodoList', () async {
+      await driver.tap(findTodoListDemo);
+      await driver.tap(find.byValueKey('add_task_field'));
+      for (int i = 0; i < 20; i++) {
+        await driver.enterText('$task $i');
+        await driver.waitFor(find.text('$task $i'));
+        await driver.tap(find.byValueKey('add_task_button'));
+      }
+    });
+    test('Scroll through list of tasks', () async {
+      await driver.scrollUntilVisible(
+          find.byValueKey('task_list'), find.text('$task 18'),
+          dyScroll: -50);
     });
   });
 }
