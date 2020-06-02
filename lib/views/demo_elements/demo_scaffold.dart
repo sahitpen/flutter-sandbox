@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/common/constants/app_padding.dart';
 import 'package:flutter_sandbox/common/constants/app_text.dart';
+import 'package:flutter_sandbox/common/constants/app_theme.dart';
 
 class DemoScaffold extends StatelessWidget {
   final String title;
   final List<Widget> widgets;
   final FloatingActionButton floatingActionButton;
-  DemoScaffold({this.title, this.widgets, this.floatingActionButton});
+
+  const DemoScaffold({
+    Key key,
+    this.title,
+    this.widgets,
+    this.floatingActionButton,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).canvasColor,
+      backgroundColor: AppTheme.theme.canvasColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Theme.of(context).canvasColor,
+        backgroundColor: AppTheme.theme.canvasColor,
         iconTheme: IconThemeData(
-          color: Theme.of(context).primaryColorDark,
+          color: AppTheme.theme.primaryColorDark,
         ),
         title: Text(
           title,
@@ -23,8 +31,8 @@ class DemoScaffold extends StatelessWidget {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
-        children: widgets
+        padding: AppPadding.padding16,
+        children: widgets,
       ),
       floatingActionButton: floatingActionButton,
     );

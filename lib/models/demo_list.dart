@@ -13,7 +13,8 @@ import 'demo.dart';
 import 'demo_names.dart';
 
 class DemoList {
-  static final demoPages = DemoNames.allDemos.map<String, List<Demo>>((category, demos) {
+  static final demoPages =
+      DemoNames.allDemos.map<String, List<Demo>>((category, demos) {
     final demoPages = demos
         .map((demo) => Demo(name: demo, pageRoute: pageRoutes[demo]))
         .toList();

@@ -6,14 +6,26 @@ class CupertinoWidget extends StatelessWidget {
   final Image image;
   final Icon icon;
 
-  CupertinoWidget({this.title, this.text, this.image, this.icon});
+  const CupertinoWidget({
+    Key key,
+    this.title,
+    this.text,
+    this.image,
+    this.icon,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
       home: CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(),
-        child: Column(children: <Widget>[text, image, icon]),
+        child: Column(
+          children: <Widget>[
+            text,
+            image,
+            icon,
+          ],
+        ),
       ),
     );
   }

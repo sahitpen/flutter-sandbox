@@ -27,13 +27,13 @@ void main() {
           home: Scaffold(
             appBar: AppBar(),
             body: Container(
-              child: Text("This is sample text."),
+              child: Text('This is sample text.'),
             ),
           ),
         ),
       );
       // Find the added Text widget
-      final Finder findText = find.text('This is sample text.');
+      final findText = find.text('This is sample text.');
       // Verify that there is 1 only text widget
       expect(findText, findsOneWidget);
     });
@@ -53,7 +53,7 @@ void main() {
         ),
       );
       // Find the added Icon widgets
-      final Finder findIcon = find.byIcon((Icons.check));
+      final findIcon = find.byIcon((Icons.check));
       // Verify that there are 3 Icon widgets rendered
       expect(findIcon, findsNWidgets(3));
     });
@@ -84,11 +84,11 @@ void main() {
     ));
 
     // Enter 'Take out the trash.' into the TextField
-    final findTextField = find.byType(TextField);
+    final findTextField = find.byKey(ValueKey('add_task_field'));
     await tester.enterText(findTextField, 'Take out the trash.');
 
     // Press the add button
-    final findButton = find.byType(FloatingActionButton);
+    final findButton = find.byKey(ValueKey('add_task_button'));
     await tester.tap(findButton);
 
     // Build the widget again to reflect changes

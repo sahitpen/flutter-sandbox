@@ -1,50 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/common/constants/app_text.dart';
-import 'package:flutter_sandbox/views/demo_scaffold.dart';
-import 'package:flutter_sandbox/views/widget_display.dart';
+import 'package:flutter_sandbox/common/constants/app_theme.dart';
+import 'package:flutter_sandbox/views/demo_elements/demo_scaffold.dart';
+import 'package:flutter_sandbox/views/widget_elements/drag_constainer.dart';
+import 'package:flutter_sandbox/views/widget_elements/widget_display.dart';
 
 class DraggablePage extends StatefulWidget {
+  DraggablePage({
+    Key key,
+  }) : super(key: key);
+
   @override
   _DraggablePageState createState() => _DraggablePageState();
 }
 
 class _DraggablePageState extends State<DraggablePage> {
-  bool isDragSuccessful = false;
+  bool _isDragSuccessful = false;
+  final _theme = AppTheme.theme;
+
   @override
   Widget build(BuildContext context) {
-    final Map<String, Widget> draggables = {
-      'Basic': _makeDraggable(
+    final draggables = _initDraggables();
+    return DemoScaffold(
+      title: 'Draggable',
+      widgets: WidgetDisplay.createWidgetDisplays(
+        draggables,
+        showTitles: false,
+      ),
+    );
+  }
+
+  // TODO: extract widgets into separate classes
+  Map<String, Widget> _initDraggables() {
+    return {
+      'Basic': DragContainer.makeDraggable(
         child: DragContainer(text: 'Basic'),
       ),
-      'Divisioned': _makeDraggable(
+      'Divisioned': DragContainer.makeDraggable(
         child: DragContainer(text: 'Long Press Drag'),
         isLongPress: true,
       ),
-      'Labeled': _makeDraggable(
+      'Labeled': DragContainer.makeDraggable(
         child: DragContainer(text: 'Stationary Dragging Child'),
         childWhenDragging: DragContainer(
-          color: Theme.of(context).primaryColorDark,
+          color: _theme.primaryColorDark,
           text: 'Stationary child!',
         ),
       ),
-      'Range': _makeDraggable(
+      'Range': DragContainer.makeDraggable(
         child: DragContainer(text: 'Custom Drag Feedback'),
         feedback: DragContainer(
-          color: Theme.of(context).highlightColor,
+          color: _theme.highlightColor,
           text: 'Dragging!',
         ),
       ),
       'Cupertino': Visibility(
-        visible: !isDragSuccessful,
-        child: _makeDraggable(
-          child: DragContainer(text: 'Droppable Drag Card'),
-        ),
+        visible: !_isDragSuccessful,
+        child: DragContainer.makeDraggable(
+            child: DragContainer(text: 'Droppable Drag Card'),
+            data: 'droppable'),
       ),
       'Drag Target': DragTarget(
         builder: (context, candidateData, rejectedData) {
           return Container(
             height: 150,
-            color: Theme.of(context).cardColor,
+            color: _theme.cardColor,
             child: Center(
               child: Text(
                 'Drag card here!',
@@ -53,57 +73,14 @@ class _DraggablePageState extends State<DraggablePage> {
             ),
           );
         },
-        onAccept: (data) {
-          setState(() {
-            isDragSuccessful = true;
-          });
-        },
+        onAccept: (data) => _handleDragSuccess(data),
       ),
     };
-    return DemoScaffold(
-        title: 'Draggable',
-        widgets: createWidgetDisplays(draggables, showTitles: false));
   }
 
-  Draggable _makeDraggable(
-      {@required Widget child,
-      Widget feedback,
-      Widget childWhenDragging,
-      bool isLongPress = false}) {
-    if (isLongPress) {
-      return LongPressDraggable(
-        child: child,
-        feedback: feedback ?? child,
-        childWhenDragging: childWhenDragging ?? Container(),
-      );
-    } else {
-      return Draggable(
-        child: child,
-        feedback: feedback ?? child,
-        childWhenDragging: childWhenDragging ?? Container(),
-      );
+  void _handleDragSuccess(String data) {
+    if (data == 'droppable') {
+      setState(() => _isDragSuccessful = true);
     }
-  }
-}
-
-class DragContainer extends StatelessWidget {
-  final Color color;
-  final String text;
-  DragContainer({this.color, this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: color ?? Theme.of(context).highlightColor,
-      height: 100,
-      width: 300,
-      child: Center(
-        child: Text(
-          text ?? '',
-          style: AppText.subtitleLight,
-          key: ValueKey(text),
-        ),
-      ),
-    );
   }
 }

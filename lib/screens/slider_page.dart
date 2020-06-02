@@ -1,88 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/views/demo_scaffold.dart';
-import 'package:flutter_sandbox/views/widget_display.dart';
+import 'package:flutter_sandbox/views/demo_elements/demo_scaffold.dart';
+import 'package:flutter_sandbox/views/widget_elements/custom_cupertino_slider.dart';
+import 'package:flutter_sandbox/views/widget_elements/custom_range_slider.dart';
+import 'package:flutter_sandbox/views/widget_elements/custom_slider.dart';
+import 'package:flutter_sandbox/views/widget_elements/widget_display.dart';
 
 class SliderPage extends StatelessWidget {
+  static const sliders = {
+    'Basic': CustomSlider(),
+    'Divisioned': CustomSlider(divisions: 4),
+    'Labeled': CustomSlider(
+      divisions: 4,
+      hasLabel: true,
+    ),
+    'Range': CustomRangeSlider(),
+    'Cupertino': CustomCupertinoSlider(),
+  };
+
+  SliderPage({
+    Key key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final Map<String, Widget> sliders = {
-      'Basic': CustomSlider(),
-      'Divisioned': CustomSlider(divisions: 4),
-      'Labeled': CustomSlider(divisions: 4, hasLabel: true),
-      'Range': CustomRangeSlider(),
-      'Cupertino': CustomCupertinoSlider(),
-    };
     return DemoScaffold(
       title: 'Sliders',
-      widgets: createWidgetDisplays(sliders),
-    );
-  }
-}
-
-class CustomSlider extends StatefulWidget {
-  final int divisions;
-  final bool hasLabel;
-  CustomSlider({this.divisions, this.hasLabel = false});
-  @override
-  _SliderState createState() => _SliderState();
-}
-
-class _SliderState extends State<CustomSlider> {
-  double slideValue = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Slider(
-      value: slideValue,
-      onChanged: (newValue) {
-        setState(() => slideValue = newValue);
-      },
-      divisions: widget.divisions,
-      label: widget.hasLabel ? '$slideValue' : null,
-      min: 0,
-      max: 100,
-      inactiveColor: Theme.of(context).accentColor,
-      activeColor: Theme.of(context).primaryColor,
-    );
-  }
-}
-
-class CustomCupertinoSlider extends StatefulWidget {
-  @override
-  _CustomCupertinoSliderState createState() => _CustomCupertinoSliderState();
-}
-
-class _CustomCupertinoSliderState extends State<CustomCupertinoSlider> {
-  double slideValue = 0;
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoSlider(
-      value: slideValue,
-      onChanged: (newValue) {
-        setState(() => slideValue = newValue);
-      },
-    );
-  }
-}
-
-class CustomRangeSlider extends StatefulWidget {
-  @override
-  _CustomRangeSliderState createState() => _CustomRangeSliderState();
-}
-
-class _CustomRangeSliderState extends State<CustomRangeSlider> {
-  var slideRange = RangeValues(20, 80);
-  @override
-  Widget build(BuildContext context) {
-    return RangeSlider(
-      values: slideRange,
-      onChanged: (RangeValues newRange) {
-        setState(() => slideRange = newRange);
-      },
-      min: 0,
-      max: 100,
-      inactiveColor: Theme.of(context).accentColor,
-      activeColor: Theme.of(context).primaryColor,
+      widgets: WidgetDisplay.createWidgetDisplays(sliders),
     );
   }
 }

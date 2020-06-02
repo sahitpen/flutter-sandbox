@@ -11,7 +11,7 @@ void main() {
   // After tests are done, close the driver
   tearDownAll(() async {
     if (driver != null) {
-      driver.close();
+      await driver.close();
     }
   });
   group('Dismissible Demo Test', () {
@@ -36,7 +36,7 @@ void main() {
       // Record a performance timeline as the app performs scrolling actions
       final timeline = await driver.traceAction(() async {
         // Verify that the category list contains all subcategories
-        for (String category in demoNames.keys) {
+        for (final category in demoNames.keys) {
           final findCategory = find.text(category);
           await driver.scrollUntilVisible(findCategoryList, findCategory,
               dyScroll: -50);
@@ -53,11 +53,11 @@ void main() {
         }
       });
       // Convert timeline to easily readible summary
-      final summary = new TimelineSummary.summarize(timeline);
+      final summary = TimelineSummary.summarize(timeline);
       // Write the summary to file
-      summary.writeSummaryToFile('homepage_scrolling', pretty: true);
+      await summary.writeSummaryToFile('homepage_scrolling', pretty: true);
       // Also write the entire JSON timeline to file
-      summary.writeTimelineToFile('homepage_scrolling', pretty: true);
+      await summary.writeTimelineToFile('homepage_scrolling', pretty: true);
     });
   });
   group('TodoListPage Test', () {
@@ -66,8 +66,8 @@ void main() {
     final task = 'This is sample task';
     test('Add items to TodoList', () async {
       await driver.tap(findTodoListDemo);
-      await driver.tap(find.byValueKey('add_task_field'));
-      for (int i = 0; i < 20; i++) {
+      await driver.tap(find.byType('TextField'));
+      for (var i = 0; i < 20; i++) {
         await driver.enterText('$task $i');
         await driver.waitFor(find.text('$task $i'));
         await driver.tap(find.byValueKey('add_task_button'));

@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/common/constants/app_padding.dart';
 import 'package:flutter_sandbox/common/constants/app_text.dart';
 
 class WidgetDisplay extends StatelessWidget {
   final Widget widget;
   final String title;
   final bool showTitles;
-  WidgetDisplay({this.title, this.widget, this.showTitles});
+
+  const WidgetDisplay({
+    Key key,
+    this.title,
+    this.widget,
+    this.showTitles,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16),
+      padding: AppPadding.padding16Top,
       child: Column(
         children: <Widget>[
           Visibility(
@@ -29,15 +37,15 @@ class WidgetDisplay extends StatelessWidget {
       ),
     );
   }
-}
 
-List<WidgetDisplay> createWidgetDisplays(Map<String, Widget> widgetMap,
-    {bool showTitles}) {
-  return widgetMap.keys.map((String widgetTitle) {
-    return WidgetDisplay(
-      title: widgetTitle,
-      widget: widgetMap[widgetTitle],
-      showTitles: showTitles,
-    );
-  }).toList();
+  static List<WidgetDisplay> createWidgetDisplays(Map<String, Widget> widgetMap,
+      {bool showTitles}) {
+    return widgetMap.keys.map((String widgetTitle) {
+      return WidgetDisplay(
+        title: widgetTitle,
+        widget: widgetMap[widgetTitle],
+        showTitles: showTitles,
+      );
+    }).toList();
+  }
 }

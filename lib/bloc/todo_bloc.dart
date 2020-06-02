@@ -12,7 +12,7 @@ class TodoBloc extends Bloc<TodoEvent, List<String>> {
 
   @override
   Stream<List<String>> mapEventToState(TodoEvent event) async* {
-    final List<String> tasks = List.from(state);
+    List<String> tasks = List.from(state);
     if (event is AddTodoItem) {
       tasks.add(event.task);
     } else if (event is RemoveTodoItem) {

@@ -11,9 +11,8 @@ class PlaygroundApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Playground',
-      theme: configureAppTheme(),
-      home: HomePage()
+      theme: AppTheme.theme,
+      home: HomePage(),
     );
   }
 }
-

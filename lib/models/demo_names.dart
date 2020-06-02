@@ -1,5 +1,5 @@
 class DemoNames {
-  static final allDemos = {
+  static const allDemos = {
     'Touch Interactions': [
       'Dismissible',
       'Draggable',
@@ -31,8 +31,6 @@ class DemoNames {
       'SimpleDialog',
       'SnackBar',
     ],
-    'Architecture': [
-      'BLoC'
-    ],
+    'Architecture': ['BLoC'],
   };
 }
