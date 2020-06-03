@@ -14,9 +14,8 @@ class DragContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _theme = AppTheme.theme;
     return Container(
-      color: color ?? _theme.highlightColor,
+      color: color ?? AppTheme.theme.highlightColor,
       height: 100,
       width: 300,
       child: Center(

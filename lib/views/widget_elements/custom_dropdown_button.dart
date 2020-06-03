@@ -18,7 +18,6 @@ class CustomDropdownButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _theme = AppTheme.theme;
     final dropdownBloc = BlocProvider.of<DropdownBloc>(context);
     return BlocBuilder<DropdownBloc, String>(
       builder: (context, selectedItem) {
@@ -30,7 +29,7 @@ class CustomDropdownButton extends StatelessWidget {
           underline: hasUnderline
               ? Container(
                   height: 2,
-                  color: _theme.accentColor,
+                  color: AppTheme.theme.accentColor,
                 )
               : null,
           icon: hasArrowIcon

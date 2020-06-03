@@ -14,11 +14,10 @@ class DemoListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _theme = AppTheme.theme;
     return ClipRRect(
       borderRadius: AppBorders.roundedTop,
       child: Container(
-        color: _theme.canvasColor,
+        color: AppTheme.theme.canvasColor,
         child: ListView(
           key: ValueKey('widget_category_list'),
           children: _createDemoPages(_demoPages),

@@ -21,7 +21,6 @@ class CustomDismissible extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _theme = AppTheme.theme;
     return Dismissible(
       child: ListTile(
         title: Text(
@@ -30,7 +29,7 @@ class CustomDismissible extends StatelessWidget {
         ),
         trailing: const Icon(Icons.touch_app),
       ),
-      background: Container(color: _theme.highlightColor),
+      background: Container(color: AppTheme.theme.highlightColor),
       key: ValueKey(id),
       direction: swipeDirection,
       onDismissed: (DismissDirection direction) {

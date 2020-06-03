@@ -11,9 +11,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _theme = AppTheme.theme;
     return Scaffold(
-      backgroundColor: _theme.primaryColor,
+      backgroundColor: AppTheme.theme.primaryColor,
       appBar: PlaygroundAppBar(),
       body: DemoListContainer(),
       bottomNavigationBar: PlaygroundNavBar(),
