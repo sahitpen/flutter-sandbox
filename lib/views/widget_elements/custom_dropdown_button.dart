@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sandbox/bloc/dropdown_bloc.dart';
 import 'package:flutter_sandbox/common/constants/app_theme.dart';
 import 'package:flutter_sandbox/common/sample_data.dart';
 
-class CustomDropdownButton extends StatefulWidget {
+class CustomDropdownButton extends StatelessWidget {
   final bool hasUnderline;
   final bool hasArrowIcon;
   final Color dropdownColor;
@@ -15,29 +17,28 @@ class CustomDropdownButton extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CustomDropdownButtonState createState() => _CustomDropdownButtonState();
-}
-
-class _CustomDropdownButtonState extends State<CustomDropdownButton> {
-  String _selectedItem = 'One';
-  final _theme = AppTheme.theme;
-  @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      isExpanded: true,
-      value: _selectedItem,
-      items: _createDropdownItems(),
-      onChanged: (newValue) => _handleDropdownChange(newValue),
-      underline: widget.hasUnderline
-          ? Container(
-              height: 2,
-              color: _theme.accentColor,
-            )
-          : null,
-      icon: widget.hasArrowIcon
-          ? const Icon(Icons.arrow_downward)
-          : const Icon(Icons.arrow_drop_down),
-      dropdownColor: widget.dropdownColor,
+    final _theme = AppTheme.theme;
+    final dropdownBloc = BlocProvider.of<DropdownBloc>(context);
+    return BlocBuilder<DropdownBloc, String>(
+      builder: (context, selectedItem) {
+        return DropdownButton<String>(
+          isExpanded: true,
+          value: selectedItem,
+          items: _createDropdownItems(),
+          onChanged: (newItem) => dropdownBloc.add(SelectItem(newItem)),
+          underline: hasUnderline
+              ? Container(
+                  height: 2,
+                  color: _theme.accentColor,
+                )
+              : null,
+          icon: hasArrowIcon
+              ? const Icon(Icons.arrow_downward)
+              : const Icon(Icons.arrow_drop_down),
+          dropdownColor: dropdownColor,
+        );
+      },
     );
   }
 
@@ -48,11 +49,5 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
         child: Text(item),
       );
     }).toList();
-  }
-
-  void _handleDropdownChange(String newValue) {
-    setState(() {
-      _selectedItem = newValue;
-    });
   }
 }

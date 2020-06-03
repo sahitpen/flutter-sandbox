@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sandbox/bloc/draggable_bloc.dart';
+import 'package:flutter_sandbox/bloc/dropdown_bloc.dart';
 import 'package:flutter_sandbox/bloc/todo_bloc.dart';
 import 'package:flutter_sandbox/screens/dismissible_page.dart';
 import 'package:flutter_sandbox/screens/draggable_page.dart';
@@ -38,7 +39,10 @@ class DemoList {
     'Card': null,
     'Chip': null,
     'DataTable': null,
-    'DropdownButton': DropdownButtonPage(),
+    'DropdownButton': BlocProvider(
+      create: (context) => DropdownBloc(),
+      child: DropdownButtonPage(),
+    ),
     'FlatButton': FlatButtonPage(),
     'IconButton': IconButtonPage(),
     'FloatingActionButton': null,
