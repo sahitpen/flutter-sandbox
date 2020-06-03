@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sandbox/bloc/draggable_bloc.dart';
 import 'package:flutter_sandbox/common/constants/app_text.dart';
 import 'package:flutter_sandbox/common/constants/app_theme.dart';
 import 'package:flutter_sandbox/views/demo_elements/demo_scaffold.dart';
 import 'package:flutter_sandbox/views/widget_elements/drag_constainer.dart';
 import 'package:flutter_sandbox/views/widget_elements/widget_display.dart';
 
-class DraggablePage extends StatefulWidget {
+class DraggablePage extends StatelessWidget {
+  final _theme = AppTheme.theme;
+
   DraggablePage({
     Key key,
   }) : super(key: key);
 
   @override
-  _DraggablePageState createState() => _DraggablePageState();
-}
-
-class _DraggablePageState extends State<DraggablePage> {
-  bool _isDragSuccessful = false;
-  final _theme = AppTheme.theme;
-
-  @override
   Widget build(BuildContext context) {
-    final draggables = _initDraggables();
+    final draggables = _initDraggables(context);
     return DemoScaffold(
       title: 'Draggable',
       widgets: WidgetDisplay.createWidgetDisplays(
@@ -31,7 +27,8 @@ class _DraggablePageState extends State<DraggablePage> {
   }
 
   // TODO: extract widgets into separate classes
-  Map<String, Widget> _initDraggables() {
+  Map<String, Widget> _initDraggables(BuildContext context) {
+    final draggableBloc = BlocProvider.of<DraggableBloc>(context);
     return {
       'Basic': DragContainer.makeDraggable(
         child: DragContainer(text: 'Basic'),
@@ -54,11 +51,16 @@ class _DraggablePageState extends State<DraggablePage> {
           text: 'Dragging!',
         ),
       ),
-      'Cupertino': Visibility(
-        visible: !_isDragSuccessful,
-        child: DragContainer.makeDraggable(
-            child: DragContainer(text: 'Droppable Drag Card'),
-            data: 'droppable'),
+      'Cupertino': BlocBuilder<DraggableBloc, bool>(
+        builder: (context, isVisible) {
+          return Visibility(
+            visible: isVisible,
+            child: DragContainer.makeDraggable(
+              child: DragContainer(text: 'Droppable Drag Card'),
+              data: 'droppable',
+            ),
+          );
+        },
       ),
       'Drag Target': DragTarget(
         builder: (context, candidateData, rejectedData) {
@@ -73,14 +75,35 @@ class _DraggablePageState extends State<DraggablePage> {
             ),
           );
         },
-        onAccept: (data) => _handleDragSuccess(data),
+        onAccept: (data) => _handleDrag(
+          data: data,
+          bloc: draggableBloc,
+          isDragComplete: true,
+        ),
+        onLeave: (data) => _handleDrag(
+          data: data,
+          bloc: draggableBloc,
+          isDragComplete: false,
+        ),
       ),
     };
   }
 
-  void _handleDragSuccess(String data) {
+  void _handleDrag({
+    @required String data,
+    @required DraggableBloc bloc,
+    @required bool isDragComplete,
+  }) {
+    assert(data != null);
+    assert(bloc != null);
+    assert(isDragComplete != null);
+
     if (data == 'droppable') {
-      setState(() => _isDragSuccessful = true);
+      if (isDragComplete) {
+        bloc.add(DraggableEvent.DragComplete);
+      } else {
+        bloc.add(DraggableEvent.DragIncomplete);
+      }
     }
   }
 }

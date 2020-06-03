@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sandbox/bloc/draggable_bloc.dart';
 import 'package:flutter_sandbox/bloc/todo_bloc.dart';
 import 'package:flutter_sandbox/screens/dismissible_page.dart';
 import 'package:flutter_sandbox/screens/draggable_page.dart';
@@ -23,7 +24,10 @@ class DemoList {
 
   static final pageRoutes = {
     'Dismissible': DismissiblePage(),
-    'Draggable': DraggablePage(),
+    'Draggable': BlocProvider(
+      create: (context) => DraggableBloc(),
+      child: DraggablePage(),
+    ),
     'Scrollable': null,
     'Slider': SliderPage(),
     'Form': null,
