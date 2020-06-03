@@ -5,6 +5,7 @@ import 'package:flutter_sandbox/screens/dismissible_page.dart';
 import 'package:flutter_sandbox/screens/draggable_page.dart';
 import 'package:flutter_sandbox/screens/dropdown_button_page.dart';
 import 'package:flutter_sandbox/screens/flat_button_page.dart';
+import 'package:flutter_sandbox/screens/http_client_page.dart';
 import 'package:flutter_sandbox/screens/icon_button_page.dart';
 import 'package:flutter_sandbox/screens/progress_indicator_page.dart';
 import 'package:flutter_sandbox/screens/slider_page.dart';
@@ -47,9 +48,10 @@ class DemoList {
     'ExpansionPanel': null,
     'SimpleDialog': null,
     'SnackBar': null,
-    'BLoC': BlocProvider(
+    'BLoC Todo List': BlocProvider(
       create: (context) => TodoBloc(),
       child: TodoListPage(),
     ),
+    'Dio Http Client': HttpClientPage(),
   };
 }

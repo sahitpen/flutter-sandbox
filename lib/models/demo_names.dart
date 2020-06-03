@@ -31,6 +31,9 @@ class DemoNames {
       'SimpleDialog',
       'SnackBar',
     ],
-    'Architecture': ['BLoC'],
+    'Architecture & Networking': [
+      'BLoC Todo List',
+      'Dio Http Client',
+    ],
   };
 }
