@@ -16,6 +16,7 @@ class TodoListPage extends StatelessWidget {
     final todoBloc = BlocProvider.of<TodoBloc>(context);
     final controller = TextEditingController();
     return DemoScaffold(
+      isScrollable: false,
       title: 'Todo List',
       widgets: [
         RoundedTextField(
@@ -25,22 +26,22 @@ class TodoListPage extends StatelessWidget {
         ),
         BlocBuilder<TodoBloc, List<String>>(
           builder: (context, tasks) {
-            return ListView.builder(
-              key: ValueKey('task_list'),
-              shrinkWrap: true,
-              physics: const ScrollPhysics(),
-              itemCount: tasks.length,
-              itemBuilder: (BuildContext context, int index) {
-                final task = tasks[index];
-                return TaskItem(
-                  key: UniqueKey(),
-                  todoBloc: todoBloc,
-                  task: task,
-                  onCompleted: (direction) => todoBloc.add(
-                    RemoveTodoItem(index),
-                  ),
-                );
-              },
+            return Expanded(
+              child: ListView.builder(
+                key: ValueKey('task_list'),
+                itemCount: tasks.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final task = tasks[index];
+                  return TaskItem(
+                    key: UniqueKey(),
+                    todoBloc: todoBloc,
+                    task: task,
+                    onCompleted: (direction) => todoBloc.add(
+                      RemoveTodoItem(index),
+                    ),
+                  );
+                },
+              ),
             );
           },
         ),

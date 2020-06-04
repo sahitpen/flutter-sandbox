@@ -8,6 +8,7 @@ class DemoScaffold extends StatelessWidget {
   final Widget body;
   final List<Widget> widgets;
   final FloatingActionButton floatingActionButton;
+  final bool isScrollable;
 
   const DemoScaffold({
     Key key,
@@ -15,6 +16,7 @@ class DemoScaffold extends StatelessWidget {
     this.body,
     this.widgets,
     this.floatingActionButton,
+    this.isScrollable = true,
   }) : super(key: key);
 
   @override
@@ -32,11 +34,16 @@ class DemoScaffold extends StatelessWidget {
           style: AppText.appBar,
         ),
       ),
-      body: body ??
-          ListView(
-            padding: AppPadding.padding16,
-            children: widgets,
-          ),
+      body: Padding(
+        padding: AppPadding.padding16,
+        child: isScrollable
+            ? ListView(
+                children: widgets,
+              )
+            : Column(
+                children: widgets,
+              ),
+      ),
       floatingActionButton: floatingActionButton,
     );
   }
