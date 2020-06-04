@@ -5,7 +5,6 @@ import 'package:flutter_sandbox/common/constants/app_theme.dart';
 
 class DemoScaffold extends StatelessWidget {
   final String title;
-  final Widget body;
   final List<Widget> widgets;
   final FloatingActionButton floatingActionButton;
   final bool isScrollable;
@@ -13,7 +12,6 @@ class DemoScaffold extends StatelessWidget {
   const DemoScaffold({
     Key key,
     this.title,
-    this.body,
     this.widgets,
     this.floatingActionButton,
     this.isScrollable = true,
