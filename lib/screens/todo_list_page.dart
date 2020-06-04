@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sandbox/bloc/todo_bloc.dart';
 import 'package:flutter_sandbox/views/demo_elements/demo_scaffold.dart';
 import 'package:flutter_sandbox/views/todo_elements/add_task_button.dart';
-import 'package:flutter_sandbox/views/todo_elements/task_field.dart';
 import 'package:flutter_sandbox/views/todo_elements/task_item.dart';
+import 'package:flutter_sandbox/views/widget_elements/rounded_text_field.dart';
 
 class TodoListPage extends StatelessWidget {
   TodoListPage({
@@ -18,8 +18,9 @@ class TodoListPage extends StatelessWidget {
     return DemoScaffold(
       title: 'Todo List',
       widgets: [
-        TaskField(
+        RoundedTextField(
           key: ValueKey('add_task_field'),
+          hintText: 'Enter your task here.',
           controller: controller,
         ),
         BlocBuilder<TodoBloc, List<String>>(
