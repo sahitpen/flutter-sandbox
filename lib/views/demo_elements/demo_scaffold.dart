@@ -5,12 +5,14 @@ import 'package:flutter_sandbox/common/constants/app_theme.dart';
 
 class DemoScaffold extends StatelessWidget {
   final String title;
+  final Widget body;
   final List<Widget> widgets;
   final FloatingActionButton floatingActionButton;
 
   const DemoScaffold({
     Key key,
     this.title,
+    this.body,
     this.widgets,
     this.floatingActionButton,
   }) : super(key: key);
@@ -30,10 +32,11 @@ class DemoScaffold extends StatelessWidget {
           style: AppText.appBar,
         ),
       ),
-      body: ListView(
-        padding: AppPadding.padding16,
-        children: widgets,
-      ),
+      body: body ??
+          ListView(
+            padding: AppPadding.padding16,
+            children: widgets,
+          ),
       floatingActionButton: floatingActionButton,
     );
   }
