@@ -5,8 +5,5 @@ abstract class DropdownEvent {}
 
 class SelectItem extends DropdownEvent {
   final String item;
-  SelectItem(this.item)
-      : assert(
-          item != null,
-        );
+  SelectItem(this.item) : assert(item != null);
 }

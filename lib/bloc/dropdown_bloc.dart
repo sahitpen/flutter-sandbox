@@ -14,6 +14,6 @@ class DropdownBloc extends Bloc<DropdownEvent, String> {
   Stream<String> mapEventToState(DropdownEvent event) async* {
     if (event is SelectItem) {
       yield event.item;
-    } else {}
+    }
   }
 }
