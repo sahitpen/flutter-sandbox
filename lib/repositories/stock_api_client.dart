@@ -12,7 +12,7 @@ class StockApiClient {
 
   StockApiClient({
     @required this.httpClient,
-  }) : assert(httpClient != null) {}
+  }) : assert(httpClient != null);
 
   Future<bool> authenticate() async {
     final apiKey = await SecretLoader.getStocksApiKey();
