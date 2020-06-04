@@ -1,10 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/repositories/stock_api_client.dart';
 import 'package:flutter_sandbox/views/demo_elements/demo_scaffold.dart';
 import 'package:flutter_sandbox/views/widget_elements/rounded_text_field.dart';
 
 class HttpClientPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    testApi();
     final controller = TextEditingController();
     return DemoScaffold(
       isScrollable: false,
@@ -29,5 +32,12 @@ class HttpClientPage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void testApi() async {
+    final client = StockApiClient(httpClient: Dio());
+    await client.authenticate();
+    final news = await client.fetchNews(['AAPL']);
+    print(news.toString());
   }
 }

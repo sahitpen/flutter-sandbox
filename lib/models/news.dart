@@ -8,9 +8,9 @@ class News extends Equatable {
   final String title;
   final String text;
   final String source;
-  final DateTime date;
+  final String date;
   final Sentiment sentiment;
-  final List<String> tickers;
+  final List tickers;
 
   const News({
     this.newsUrl,
@@ -42,7 +42,7 @@ class News extends Equatable {
       title: json['title'],
       text: json['text'],
       source: json['source_name'],
-      date: DateTime.parse(json['date']),
+      date: json['date'],
       sentiment: _mapStringToSentiment(json['sentiment']),
       tickers: json['tickers'],
     );

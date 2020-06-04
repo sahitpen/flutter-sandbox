@@ -6,14 +6,19 @@ import 'package:meta/meta.dart';
 class StockApiClient {
   static const baseUrl = 'https://stocknewsapi.com/api/v1';
   final Map<String, dynamic> queryParameters = {
-    'token': SecretLoader.getStocksApiKey(),
     'items': 10,
   };
   final Dio httpClient;
 
   StockApiClient({
     @required this.httpClient,
-  }) : assert(httpClient != null);
+  }) : assert(httpClient != null) {}
+
+  Future<bool> authenticate() async {
+    final apiKey = await SecretLoader.getStocksApiKey();
+    queryParameters['token'] = apiKey;
+    return true;
+  }
 
   Future<List<News>> fetchNews(List<String> tickers) async {
     queryParameters['tickers'] = tickers.toString();
