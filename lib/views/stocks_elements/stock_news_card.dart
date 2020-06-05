@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/common/constants/app_borders.dart';
+import 'package:flutter_sandbox/common/constants/app_padding.dart';
+import 'package:flutter_sandbox/common/constants/app_text.dart';
 import 'package:flutter_sandbox/models/news.dart';
 
 class StockNewsCard extends StatelessWidget {
@@ -12,24 +15,53 @@ class StockNewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Row(
+    return Padding(
+      padding: AppPadding.padding16Top,
+      child: InkWell(
+        onTap: () => {},
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text('${news.source}'),
-            Text('${news.date}'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  '${news.source}',
+                  style: AppText.subtitleDark,
+                ),
+                Text(
+                  _simplifyDateString(news.date),
+                  style: AppText.subtitle,
+                ),
+              ],
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              '${news.title}',
+              style: AppText.header,
+            ),
+            SizedBox(height: 8.0),
+            ClipRRect(
+              child: Image.network('${news.imageUrl}'),
+              borderRadius: AppBorders.rounded,
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              news.tickers.join(', '),
+              style: AppText.subtitleAccent,
+            ),
+            Divider(height: 30),
           ],
         ),
-        Text('${news.title}'),
-        Text('${news.text}'),
-        Image.network('${news.imageUrl}'),
-        Row(
-          children: <Widget>[
-            Text('${news.tickers}'),
-            Text('${news.sentiment}')
-          ],
-        )
-      ],
+      ),
     );
+  }
+
+  String _simplifyDateString(String date) {
+    final components = date.split(' ');
+    if (components.length < 3) {
+      return date;
+    }
+    return components.sublist(0, 3).join(' ');
   }
 }

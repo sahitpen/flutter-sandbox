@@ -27,11 +27,12 @@ class StockNewsPage extends StatelessWidget {
             FetchNews(tickers: value.split(', ')),
           ),
         ),
+        SizedBox(height: 8.0),
         Expanded(
           child: BlocBuilder<NewsBloc, NewsState>(
             builder: (context, state) {
               if (state is NewsEmpty) {
-                return Center(child: Text('There are no news available.'));
+                return Center(child: Text('There is no news available.'));
               } else if (state is NewsLoading) {
                 return Center(child: CircularProgressIndicator());
               } else if (state is NewsLoaded) {
