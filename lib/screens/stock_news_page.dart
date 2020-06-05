@@ -1,7 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/models/news.dart';
-import 'package:flutter_sandbox/repositories/stock_api_client.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sandbox/bloc/news_bloc.dart';
 import 'package:flutter_sandbox/views/demo_elements/demo_scaffold.dart';
 import 'package:flutter_sandbox/views/stocks_elements/stock_news_card.dart';
 import 'package:flutter_sandbox/views/widget_elements/rounded_text_field.dart';
@@ -13,7 +12,7 @@ class StockNewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    testApi();
+    final newsBloc = BlocProvider.of<NewsBloc>(context);
     final controller = TextEditingController();
     return DemoScaffold(
       isScrollable: false,
@@ -24,34 +23,33 @@ class StockNewsPage extends StatelessWidget {
           controller: controller,
           hintText: 'Search for a ticker symbol.',
           prefixIcon: Icon(Icons.search),
-          onSubmitted: (String value) {},
+          onSubmitted: (String value) => newsBloc.add(
+            FetchNews(tickers: value.split(', ')),
+          ),
         ),
         Expanded(
-          child: ListView.builder(
-            key: ValueKey('stock_list'),
-            itemCount: 15,
-            itemBuilder: (BuildContext context, int index) {
-              return StockNewsCard(
-                news: News(
-                  title: 'test',
-                  text: 'test',
-                  date: 'test',
-                  source: 'test',
-                  tickers: ['test'],
-                  sentiment: Sentiment.Positive,
-                ),
-              );
+          child: BlocBuilder<NewsBloc, NewsState>(
+            builder: (context, state) {
+              if (state is NewsEmpty) {
+                return Center(child: Text('There are no news available.'));
+              } else if (state is NewsLoading) {
+                return Center(child: CircularProgressIndicator());
+              } else if (state is NewsLoaded) {
+                final news = state.news;
+                return ListView.builder(
+                  key: ValueKey('stock_list'),
+                  itemCount: news.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return StockNewsCard(news: news[index]);
+                  },
+                );
+              } else {
+                return Center(child: Text('Could not retrieve news.'));
+              }
             },
           ),
         ),
       ],
     );
-  }
-
-  void testApi() async {
-    final client = StockApiClient(httpClient: Dio());
-    await client.authenticate();
-    final news = await client.fetchNews(['AAPL']);
-    print(news.toString());
   }
 }
