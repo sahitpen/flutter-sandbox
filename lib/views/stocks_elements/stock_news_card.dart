@@ -3,6 +3,7 @@ import 'package:flutter_sandbox/common/constants/app_borders.dart';
 import 'package:flutter_sandbox/common/constants/app_padding.dart';
 import 'package:flutter_sandbox/common/constants/app_text.dart';
 import 'package:flutter_sandbox/models/news.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class StockNewsCard extends StatelessWidget {
   final News news;
@@ -18,7 +19,7 @@ class StockNewsCard extends StatelessWidget {
     return Padding(
       padding: AppPadding.padding16Top,
       child: InkWell(
-        onTap: () => {},
+        onTap: () => _openArticle(news.newsUrl),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -63,5 +64,17 @@ class StockNewsCard extends StatelessWidget {
       return date;
     }
     return components.sublist(0, 3).join(' ');
+  }
+
+  void _openArticle(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceWebView: true,
+        enableJavaScript: true,
+      );
+    } else {
+      throw Exception('Could not open article.');
+    }
   }
 }
