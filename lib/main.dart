@@ -7,6 +7,10 @@ void main() {
 }
 
 class PlaygroundApp extends StatelessWidget {
+  const PlaygroundApp({
+    Key key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

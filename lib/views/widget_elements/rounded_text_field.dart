@@ -4,12 +4,14 @@ import 'package:flutter_sandbox/common/constants/app_padding.dart';
 
 class RoundedTextField extends StatelessWidget {
   final TextEditingController controller;
+  final Function onSubmitted;
   final String hintText;
   final Icon prefixIcon;
 
   const RoundedTextField({
     ValueKey key,
     @required this.controller,
+    this.onSubmitted,
     this.hintText = '',
     this.prefixIcon,
   })  : assert(controller != null),
@@ -26,6 +28,7 @@ class RoundedTextField extends StatelessWidget {
         prefixIcon: prefixIcon,
       ),
       controller: controller,
+      onSubmitted: onSubmitted,
     );
   }
 }

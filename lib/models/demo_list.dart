@@ -1,15 +1,18 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sandbox/bloc/draggable_bloc.dart';
 import 'package:flutter_sandbox/bloc/dropdown_bloc.dart';
+import 'package:flutter_sandbox/bloc/news_bloc.dart';
 import 'package:flutter_sandbox/bloc/todo_bloc.dart';
+import 'package:flutter_sandbox/repositories/stock_api_client.dart';
 import 'package:flutter_sandbox/screens/dismissible_page.dart';
 import 'package:flutter_sandbox/screens/draggable_page.dart';
 import 'package:flutter_sandbox/screens/dropdown_button_page.dart';
 import 'package:flutter_sandbox/screens/flat_button_page.dart';
-import 'package:flutter_sandbox/screens/http_client_page.dart';
 import 'package:flutter_sandbox/screens/icon_button_page.dart';
 import 'package:flutter_sandbox/screens/progress_indicator_page.dart';
 import 'package:flutter_sandbox/screens/slider_page.dart';
+import 'package:flutter_sandbox/screens/stock_news_page.dart';
 import 'package:flutter_sandbox/screens/todo_list_page.dart';
 
 import 'demo.dart';
@@ -56,6 +59,13 @@ class DemoList {
       create: (context) => TodoBloc(),
       child: TodoListPage(),
     ),
-    'Dio Http Client': HttpClientPage(),
+    'Dio Http Client': BlocProvider(
+      create: (context) => NewsBloc(
+        apiClient: StockApiClient(
+          httpClient: Dio(),
+        ),
+      ),
+      child: StockNewsPage(),
+    )
   };
 }
