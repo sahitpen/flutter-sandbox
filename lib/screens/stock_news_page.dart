@@ -30,27 +30,29 @@ class StockNewsPage extends StatelessWidget {
         SizedBox(height: 8.0),
         Expanded(
           child: BlocBuilder<NewsBloc, NewsState>(
-            builder: (context, state) {
-              if (state is NewsEmpty) {
-                return Center(child: Text('There is no news available.'));
-              } else if (state is NewsLoading) {
-                return Center(child: CircularProgressIndicator());
-              } else if (state is NewsLoaded) {
-                final news = state.news;
-                return ListView.builder(
-                  key: ValueKey('stock_list'),
-                  itemCount: news.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return StockNewsCard(news: news[index]);
-                  },
-                );
-              } else {
-                return Center(child: Text('Could not retrieve news.'));
-              }
-            },
+            builder: (context, state) => _handleState(state),
           ),
         ),
       ],
     );
+  }
+
+  Widget _handleState(NewsState state) {
+    if (state is NewsEmpty) {
+      return Center(child: Text('There is no news available.'));
+    } else if (state is NewsLoading) {
+      return Center(child: CircularProgressIndicator());
+    } else if (state is NewsLoaded) {
+      final news = state.news;
+      return ListView.builder(
+        key: ValueKey('stock_list'),
+        itemCount: news.length,
+        itemBuilder: (BuildContext context, int index) {
+          return StockNewsCard(news: news[index]);
+        },
+      );
+    } else {
+      return Center(child: Text('Could not retrieve news.'));
+    }
   }
 }
